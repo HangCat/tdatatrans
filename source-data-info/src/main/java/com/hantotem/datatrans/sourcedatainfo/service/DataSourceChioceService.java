@@ -29,4 +29,18 @@ public class DataSourceChioceService {
 		return dataTypes;
 	}
 
+
+	/**
+	 * 选择数据类型，并且返回
+	 * @return
+	 */
+	public List<String> choiseDataType(String dataType){
+		List<String> dataTypes = new ArrayList<>(10);
+		for (DataSourceType type : DataSourceType.values()) {
+			if (!type.getHiddenFlag())
+			dataTypes.add(type.getDatabaseType());
+		}
+		return dataTypes;
+	}
+
 }

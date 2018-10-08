@@ -21,7 +21,7 @@ public class DataSourceChioceControllerTest extends BaseControllerTest {
 
 	@Test
 	public void getDataTypesTest() throws Exception {
-		mockMvc.perform(MockMvcRequestBuilders.get("/datasource/chioce/list/dataTypes"))
+		mockMvc.perform(MockMvcRequestBuilders.get("/datasource/chioce/dataTypes"))
 				.andExpect(status().isOk())
 				.andDo(print());
 	}
