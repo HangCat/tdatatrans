@@ -1,8 +1,11 @@
 package com.hantotem.datatrans.sourcedatainfo.controller.sourceData;
 
+import com.hantotem.datatrans.sourcedatainfo.controller.base.impl.TransBaseControllerImpl;
 import com.hantotem.datatrans.sourcedatainfo.service.DataSourceChioceService;
 import com.hantotem.datatrans.sourcedatainfo.support.reponse.DataTransResponse;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -14,19 +17,23 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @RequestMapping("datasource/chioce")
-public class DataSourceChioceController {
+@Slf4j
+public class DataSourceChioceController extends TransBaseControllerImpl {
 
 	@Autowired
 	DataSourceChioceService dataSourceChioceService;
 
-	public DataTransResponse getDataTypes(){
-		DataTransResponse dataTransResponse = new DataTransResponse();
-		dataTransResponse.setData(dataSourceChioceService.getDataTypes());
-
-
+	@GetMapping(value = "/list/dataTypes")
+	public DataTransResponse getDataTypes() {
+		DataTransResponse dataTransResponse;
+		try {
+			dataTransResponse = getOKDataTransResponse(dataSourceChioceService.getDataTypes());
+		} catch (Exception e) {
+			log.error(e.getMessage());
+			dataTransResponse = getErrDataTransResponse();
+		}
+		return dataTransResponse;
 	}
-
-
 
 
 }

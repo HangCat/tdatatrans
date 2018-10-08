@@ -1,6 +1,6 @@
 package com.hantotem.datatrans.sourcedatainfo.service;
 
-import com.hantotem.datatrans.sourcedatainfo.database.pojo.vo.DataSourceType;
+import com.hantotem.datatrans.sourcedatainfo.database.databaseEnum.DataSourceType;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -16,9 +16,14 @@ import java.util.List;
 public class DataSourceChioceService {
 
 
+	/**
+	 * 获取开放的，系统支持的 数据类型
+	 * @return
+	 */
 	public List<String> getDataTypes(){
-		List<String> dataTypes = new ArrayList<>();
+		List<String> dataTypes = new ArrayList<>(10);
 		for (DataSourceType type : DataSourceType.values()) {
+			if (!type.getHiddenFlag())
 			dataTypes.add(type.getDatabaseType());
 		}
 		return dataTypes;
