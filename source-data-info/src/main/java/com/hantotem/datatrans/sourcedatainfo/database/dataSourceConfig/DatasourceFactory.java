@@ -6,6 +6,8 @@ package com.hantotem.datatrans.sourcedatainfo.database.dataSourceConfig;
  * @author: zhouyp
  * @create: 2018-10-08
  */
-public class Factory {
+public class DatasourceFactory {
+
+	private class
 
 }

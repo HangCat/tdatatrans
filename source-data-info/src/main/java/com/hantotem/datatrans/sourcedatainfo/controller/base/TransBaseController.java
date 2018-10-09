@@ -11,7 +11,7 @@ import com.hantotem.datatrans.sourcedatainfo.support.reponse.DataTransResponse;
 public interface TransBaseController {
 
 	/**
-	 * 整合返回正常的结果集
+	 * 默认返回正常的结果集
 	 *
 	 * @param data
 	 * @return
@@ -19,7 +19,7 @@ public interface TransBaseController {
 	DataTransResponse getOKDataTransResponse(Object data);
 
 	/**
-	 * 整合返回异常的结果集
+	 * 默认返回异常的结果集
 	 *
 	 * @return
 	 */

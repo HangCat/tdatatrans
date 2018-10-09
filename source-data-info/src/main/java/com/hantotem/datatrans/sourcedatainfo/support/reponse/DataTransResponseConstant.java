@@ -9,7 +9,4 @@ package com.hantotem.datatrans.sourcedatainfo.support.reponse;
 public interface DataTransResponseConstant {
 	String MESSEGE_OK = "succes";
 	String MESSEGE_ERR = "error";
-
-	String CODE_OK = "200";
-	String CODE_ERR = "500";
 }

@@ -15,26 +15,11 @@ import java.util.List;
 @Service
 public class DataSourceChioceService {
 
-
 	/**
 	 * 获取开放的，系统支持的 数据类型
 	 * @return
 	 */
 	public List<String> getDataTypes(){
-		List<String> dataTypes = new ArrayList<>(10);
-		for (DataSourceType type : DataSourceType.values()) {
-			if (!type.getHiddenFlag())
-			dataTypes.add(type.getDatabaseType());
-		}
-		return dataTypes;
-	}
-
-
-	/**
-	 * 选择数据类型，并且返回
-	 * @return
-	 */
-	public List<String> choiseDataType(String dataType){
 		List<String> dataTypes = new ArrayList<>(10);
 		for (DataSourceType type : DataSourceType.values()) {
 			if (!type.getHiddenFlag())

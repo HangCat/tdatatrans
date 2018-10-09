@@ -1,6 +1,7 @@
 package com.hantotem.datatrans.sourcedatainfo.support.reponse;
 
 import lombok.Data;
+import org.springframework.http.HttpStatus;
 
 /**
  * @program: source-data-info
@@ -11,11 +12,13 @@ import lombok.Data;
 @Data
 public class DataTransResponse {
 
-	private String code;
+	private HttpStatus code;
 
 	private Object data;
 
-	private String messege;
+	private String commonMsg;
+
+	private String noticeMsg;
 
 
 }

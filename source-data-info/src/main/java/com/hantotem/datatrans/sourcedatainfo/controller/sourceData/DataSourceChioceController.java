@@ -5,6 +5,7 @@ import com.hantotem.datatrans.sourcedatainfo.service.DataSourceChioceService;
 import com.hantotem.datatrans.sourcedatainfo.support.reponse.DataTransResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -25,25 +26,14 @@ public class DataSourceChioceController extends TransBaseControllerImpl {
 	public DataTransResponse getDataTypes() {
 		DataTransResponse dataTransResponse;
 		try {
-			dataTransResponse = getOKDataTransResponse(dataSourceChioceService.getDataTypes());
+			dataTransResponse = getOKDataTransResponse(
+					dataSourceChioceService.getDataTypes());
 		} catch (Exception e) {
 			log.error(e.getMessage());
 			dataTransResponse = getErrDataTransResponse();
+			dataTransResponse.setNoticeMsg(e.getMessage());
 		}
 		return dataTransResponse;
 	}
-
-	@PostMapping(value = "/dataTypes/{dataType}")
-	public DataTransResponse choiseDataType(@PathVariable String dataType) {
-		DataTransResponse dataTransResponse;
-		try {
-			dataTransResponse = getOKDataTransResponse(dataSourceChioceService.choiseDataType(dataType));
-		} catch (Exception e) {
-			log.error(e.getMessage());
-			dataTransResponse = getErrDataTransResponse();
-		}
-		return dataTransResponse;
-	}
-
 
 }
