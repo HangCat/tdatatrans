@@ -1,4 +1,4 @@
-package com.hantotem.datatrans.sourcedatainfo.support.reponse;
+package com.datatrans.sourcedatainfo.support.reponse;
 
 import lombok.Data;
 import org.springframework.http.HttpStatus;

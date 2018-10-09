@@ -1,8 +1,7 @@
-package com.hantotem.datatrans.sourcedatainfo.service;
+package com.datatrans.sourcedatainfo.service;
 
-import com.hantotem.datatrans.sourcedatainfo.database.dataSourceConfig.DatasourceFactory;
-import com.hantotem.datatrans.sourcedatainfo.database.dataSourceConfig.Factory;
-import com.hantotem.datatrans.sourcedatainfo.database.databaseEnum.DataSourceType;
+import com.datatrans.sourcedatainfo.database.dataSourceConfig.DatasourceFactory;
+import com.datatrans.sourcedatainfo.database.databaseEnum.DataSourceType;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,7 +21,7 @@ public class TransDataSourceRPCService {
 	 */
 	public List<String> choiseDataType(String dataType){
 		DatasourceFactory factory = new DatasourceFactory();
-		factory
+//		factory
 		List<String> dataTypes = new ArrayList<>(10);
 		for (DataSourceType type : DataSourceType.values()) {
 			if (!type.getHiddenFlag())

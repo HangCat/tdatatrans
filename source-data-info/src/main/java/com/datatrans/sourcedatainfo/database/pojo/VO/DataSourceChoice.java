@@ -1,4 +1,4 @@
-package com.hantotem.datatrans.sourcedatainfo.database.pojo.VO;
+package com.datatrans.sourcedatainfo.database.pojo.VO;
 
 /**
  * @program: source-data-info

@@ -1,6 +1,6 @@
-package com.hantotem.datatrans.sourcedatainfo.controller.sourceData;
+package com.datatrans.sourcedatainfo.controller.sourceData;
 
-import com.hantotem.datatrans.sourcedatainfo.controller.BaseControllerTest;
+import com.datatrans.sourcedatainfo.controller.BaseControllerTest;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;

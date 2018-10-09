@@ -1,4 +1,4 @@
-package com.hantotem.datatrans.sourcedatainfo;
+package com.datatrans.sourcedatainfo;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

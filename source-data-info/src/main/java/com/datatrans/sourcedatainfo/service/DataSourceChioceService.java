@@ -1,6 +1,6 @@
-package com.hantotem.datatrans.sourcedatainfo.service;
+package com.datatrans.sourcedatainfo.service;
 
-import com.hantotem.datatrans.sourcedatainfo.database.databaseEnum.DataSourceType;
+import com.datatrans.sourcedatainfo.database.databaseEnum.DataSourceType;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;

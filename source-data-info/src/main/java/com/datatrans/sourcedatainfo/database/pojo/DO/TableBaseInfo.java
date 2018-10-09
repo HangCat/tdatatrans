@@ -1,4 +1,4 @@
-package com.hantotem.datatrans.sourcedatainfo.database.pojo.DO;
+package com.datatrans.sourcedatainfo.database.pojo.DO;
 
 import lombok.Data;
 

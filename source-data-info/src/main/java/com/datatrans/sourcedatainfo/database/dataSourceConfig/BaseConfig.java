@@ -1,4 +1,4 @@
-package com.hantotem.datatrans.sourcedatainfo.database.dataSourceConfig;
+package com.datatrans.sourcedatainfo.database.dataSourceConfig;
 
 import javax.sql.DataSource;
 

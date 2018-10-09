@@ -1,7 +1,7 @@
-package com.hantotem.datatrans.sourcedatainfo.controller;
+package com.datatrans.sourcedatainfo.controller;
 
-import com.hantotem.datatrans.sourcedatainfo.SourceDataInfoApplicationTests;
-import com.hantotem.datatrans.sourcedatainfo.controller.base.TransBaseController;
+import com.datatrans.sourcedatainfo.SourceDataInfoApplicationTests;
+import com.datatrans.sourcedatainfo.controller.base.TransBaseController;
 import org.junit.Before;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;

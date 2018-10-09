@@ -1,12 +1,13 @@
-package com.hantotem.datatrans.sourcedatainfo.controller.sourceData;
+package com.datatrans.sourcedatainfo.controller.sourceData;
 
-import com.hantotem.datatrans.sourcedatainfo.controller.base.impl.TransBaseControllerImpl;
-import com.hantotem.datatrans.sourcedatainfo.service.DataSourceChioceService;
-import com.hantotem.datatrans.sourcedatainfo.support.reponse.DataTransResponse;
+import com.datatrans.sourcedatainfo.controller.base.impl.TransBaseControllerImpl;
+import com.datatrans.sourcedatainfo.service.DataSourceChioceService;
+import com.datatrans.sourcedatainfo.support.reponse.DataTransResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 /**
  * @program: source-data-info

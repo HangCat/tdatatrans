@@ -1,4 +1,4 @@
-package com.hantotem.datatrans.sourcedatainfo.database.databaseEnum;
+package com.datatrans.sourcedatainfo.database.databaseEnum;
 
 /**
  * @program: source-data-info

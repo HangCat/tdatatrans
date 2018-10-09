@@ -1,4 +1,4 @@
-package com.hantotem.datatrans.baseService;
+package com.datatrans.baseService;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

@@ -1,4 +1,4 @@
-package com.hantotem.datatrans.baseService.rowMetaDate;
+package com.datatrans.baseService.rowMetaDate;
 
 import java.io.Serializable;
 import java.math.BigDecimal;

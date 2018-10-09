@@ -1,6 +1,6 @@
-package com.hantotem.datatrans.sourcedatainfo.service;
+package com.datatrans.sourcedatainfo.service;
 
-import com.hantotem.datatrans.sourcedatainfo.SourceDataInfoApplicationTests;
+import com.datatrans.sourcedatainfo.SourceDataInfoApplicationTests;
 import org.junit.Assert;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;

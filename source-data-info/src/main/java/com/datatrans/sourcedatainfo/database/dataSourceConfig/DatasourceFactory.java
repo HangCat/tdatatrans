@@ -1,4 +1,4 @@
-package com.hantotem.datatrans.sourcedatainfo.database.dataSourceConfig;
+package com.datatrans.sourcedatainfo.database.dataSourceConfig;
 
 /**
  * @program: source-data-info
@@ -8,6 +8,6 @@ package com.hantotem.datatrans.sourcedatainfo.database.dataSourceConfig;
  */
 public class DatasourceFactory {
 
-	private class
+//	private class
 
 }

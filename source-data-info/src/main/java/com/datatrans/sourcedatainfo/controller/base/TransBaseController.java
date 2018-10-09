@@ -1,6 +1,6 @@
-package com.hantotem.datatrans.sourcedatainfo.controller.base;
+package com.datatrans.sourcedatainfo.controller.base;
 
-import com.hantotem.datatrans.sourcedatainfo.support.reponse.DataTransResponse;
+import com.datatrans.sourcedatainfo.support.reponse.DataTransResponse;
 
 /**
  * @program: source-data-info

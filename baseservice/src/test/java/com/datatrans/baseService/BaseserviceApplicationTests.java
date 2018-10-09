@@ -1,4 +1,4 @@
-package com.hantotem.datatrans.baseService;
+package com.datatrans.baseService;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

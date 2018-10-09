@@ -1,4 +1,4 @@
-package com.hantotem.datatrans.baseService.dataSourceProvide;
+package com.datatrans.baseService.dataSourceProvide;
 
 import org.springframework.stereotype.Component;
 

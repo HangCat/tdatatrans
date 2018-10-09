@@ -1,4 +1,4 @@
-package com.hantotem.datatrans.sourcedatainfo.support.reponse;
+package com.datatrans.sourcedatainfo.support.reponse;
 
 /**
  * @program: source-data-info

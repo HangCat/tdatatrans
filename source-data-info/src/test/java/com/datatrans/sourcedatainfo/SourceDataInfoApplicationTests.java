@@ -1,4 +1,4 @@
-package com.hantotem.datatrans.sourcedatainfo;
+package com.datatrans.sourcedatainfo;
 
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
