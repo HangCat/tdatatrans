@@ -5,21 +5,19 @@ import lombok.Data;
 import java.util.Map;
 
 /**
- * @program: source-data-info
- * @description: 数据源基本信息
+ * @program: datatrans
+ * @description: 基本的数据源信息
  * @author: zhouyp
- * @create: 2018-09-28
+ * @create: 2018-10-09
  */
-@Deprecated
 @Data
-public class TableBaseInfo {
+public class DataSourceConnInfo {
 
-	private String databaseId;
-	private String databaseName;
+	private String driverClassName;
 	private String tableSpace;
-	private String jdbcUrl;
+	private String url;
 	private String port;
-	private String name;
+	private String userName;
 	private String password;
 	private Map<String, String> datasourceProperty;
 

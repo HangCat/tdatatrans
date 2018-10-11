@@ -1,7 +1,8 @@
 package com.datatrans.sourcedatainfo.service;
 
-import com.datatrans.sourcedatainfo.database.dataSourceConfig.DatasourceFactory;
+import com.datatrans.sourcedatainfo.database.configaration.DatasourceFactory;
 import com.datatrans.sourcedatainfo.database.databaseEnum.DataSourceType;
+import org.springframework.jdbc.core.JdbcTemplate;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,7 +20,7 @@ public class TransDataSourceRPCService {
 	 * 选择数据类型，并且返回
 	 * @return
 	 */
-	public List<String> choiseDataType(String dataType){
+	public JdbcTemplate choiseDataType(String dataType){
 		DatasourceFactory factory = new DatasourceFactory();
 //		factory
 		List<String> dataTypes = new ArrayList<>(10);
@@ -27,7 +28,8 @@ public class TransDataSourceRPCService {
 			if (!type.getHiddenFlag())
 				dataTypes.add(type.getDatabaseType());
 		}
-		return dataTypes;
+//		return dataTypes;
+		return null;
 	}
 
 }

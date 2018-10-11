@@ -5,9 +5,7 @@ import com.datatrans.sourcedatainfo.service.DataSourceChioceService;
 import com.datatrans.sourcedatainfo.support.reponse.DataTransResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * @program: source-data-info
@@ -36,5 +34,35 @@ public class DataSourceChioceController extends TransBaseControllerImpl {
 		}
 		return dataTransResponse;
 	}
+
+	@GetMapping(value = "/datasource")
+	public DataTransResponse getDataSource() {
+		DataTransResponse dataTransResponse;
+		try {
+			dataTransResponse = getOKDataTransResponse(
+					dataSourceChioceService.getDataSources());
+		} catch (Exception e) {
+			log.error(e.getMessage());
+			dataTransResponse = getErrDataTransResponse();
+			dataTransResponse.setNoticeMsg(e.getMessage());
+		}
+		return dataTransResponse;
+	}
+
+
+//	@PostMapping(value = "/dataTypes")
+//	public DataTransResponse getDataTypes(
+//			@ModelAttribute BaseDataSourceInfo info) {
+//		DataTransResponse dataTransResponse;
+//		try {
+//			dataTransResponse = getOKDataTransResponse(
+//					dataSourceChioceService.getDataTypes());
+//		} catch (Exception e) {
+//			log.error(e.getMessage());
+//			dataTransResponse = getErrDataTransResponse();
+//			dataTransResponse.setNoticeMsg(e.getMessage());
+//		}
+//		return dataTransResponse;
+//	}
 
 }

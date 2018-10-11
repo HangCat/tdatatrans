@@ -7,7 +7,7 @@ import java.util.*;
 
 /**
  * @program: baseservice
- * @description: 数据库信息,包括基本连接信息，和一些基本配置信息
+ * @description: 数据库信息, 包括基本连接信息，和一些基本配置信息
  * @author: zhouyp
  * @create: 2018-09-26
  */
@@ -25,7 +25,7 @@ public abstract class BaseDatabaseInfo {
 	/**
 	 * Oracle的命名表空间
 	 */
-	public static final String TABLE_NAME_SPACE= "TABLE_NAME_SPACE";
+	public static final String TABLE_NAME_SPACE = "TABLE_NAME_SPACE";
 
 	/*public static final String ATTRIBUTE_USE_RESULT_STREAMING = "STREAM_RESULTS";*/
 
@@ -70,7 +70,7 @@ public abstract class BaseDatabaseInfo {
 	protected boolean releaseSavepoint = true;
 
 	/**
-	 *  查询表中数据量的SQL-没有表名
+	 * 查询表中数据量的SQL-没有表名
 	 */
 	public static final String SELECT_COUNT_STATEMENT = "select count(1) FROM";
 
@@ -96,7 +96,7 @@ public abstract class BaseDatabaseInfo {
 	public BaseDatabaseInfo() {
 		attributes = new Properties();
 		changed = false;
-		if ( getAccessTypeList() != null && getAccessTypeList().length > 0 ) {
+		if (getAccessTypeList() != null && getAccessTypeList().length > 0) {
 			accessType = getAccessTypeList()[0];
 		}
 	}
@@ -112,10 +112,9 @@ public abstract class BaseDatabaseInfo {
 	}
 
 	/**
-	 * @param changed
-	 *          The changed to set.
+	 * @param changed The changed to set.
 	 */
-	public void setChanged( boolean changed ) {
+	public void setChanged(boolean changed) {
 		this.changed = changed;
 	}
 
@@ -129,12 +128,12 @@ public abstract class BaseDatabaseInfo {
 	/**
 	 * @param name 设置connection的名字
 	 */
-	public void setName( String name ) {
+	public void setName(String name) {
 		this.name = name;
 		// Default display name to be the same as connection name if it has not
 		// been initialized before
-		if ( ( getDisplayName() == null ) || ( getDisplayName().length() == 0 ) ) {
-			setDisplayName( name );
+		if ((getDisplayName() == null) || (getDisplayName().length() == 0)) {
+			setDisplayName(name);
 		}
 	}
 
@@ -148,7 +147,7 @@ public abstract class BaseDatabaseInfo {
 	/**
 	 * @param displayName The un-escaped connection Name to set.
 	 */
-	public void setDisplayName( String displayName ) {
+	public void setDisplayName(String displayName) {
 		this.displayName = displayName;
 	}
 
@@ -162,16 +161,16 @@ public abstract class BaseDatabaseInfo {
 	/**
 	 * @param databaseName 设置数据库名
 	 */
-	public void setDatabaseName( String databaseName ) {
+	public void setDatabaseName(String databaseName) {
 		this.databaseName = databaseName;
 	}
 
 	/**
 	 * @param databasePortNumberString
 	 */
-	public void setDatabasePortNumberString( String databasePortNumberString ) {
-		if ( databasePortNumberString != null ) {
-			getAttributes().put( BaseDatabaseMeta.ATTRIBUTE_PORT_NUMBER, databasePortNumberString );
+	public void setDatabasePortNumberString(String databasePortNumberString) {
+		if (databasePortNumberString != null) {
+			getAttributes().put(BaseDatabaseMeta.ATTRIBUTE_PORT_NUMBER, databasePortNumberString);
 		}
 	}
 
@@ -179,7 +178,7 @@ public abstract class BaseDatabaseInfo {
 	 * @return Returns the databasePortNumber string.
 	 */
 	public String getDatabasePortNumberString() {
-		return getAttributes().getProperty( ATTRIBUTE_PORT_NUMBER, "-1" );
+		return getAttributes().getProperty(ATTRIBUTE_PORT_NUMBER, "-1");
 	}
 
 	/**
@@ -192,7 +191,7 @@ public abstract class BaseDatabaseInfo {
 	/**
 	 * @param hostname 设置主机名
 	 */
-	public void setHostname( String hostname ) {
+	public void setHostname(String hostname) {
 		this.hostname = hostname;
 	}
 
@@ -204,10 +203,9 @@ public abstract class BaseDatabaseInfo {
 	}
 
 	/**
-	 * @param password
-	 *          The password to set.
+	 * @param password The password to set.
 	 */
-	public void setPassword( String password ) {
+	public void setPassword(String password) {
 		this.password = password;
 	}
 
@@ -219,10 +217,9 @@ public abstract class BaseDatabaseInfo {
 	}
 
 	/**
-	 * @param servername
-	 *          The servername to set.
+	 * @param servername The servername to set.
 	 */
-	public void setServername( String servername ) {
+	public void setServername(String servername) {
 		this.servername = servername;
 	}
 
@@ -234,10 +231,9 @@ public abstract class BaseDatabaseInfo {
 	}
 
 	/**
-	 * @param dataTablespace
-	 *          The data tablespace to set.
+	 * @param dataTablespace The data tablespace to set.
 	 */
-	public void setDataTablespace( String dataTablespace ) {
+	public void setDataTablespace(String dataTablespace) {
 		this.dataTablespace = dataTablespace;
 	}
 
@@ -249,29 +245,27 @@ public abstract class BaseDatabaseInfo {
 	}
 
 	/**
-	 * @param indexTablespace
-	 *          The index tablespace to set.
+	 * @param indexTablespace The index tablespace to set.
 	 */
-	
-	public void setIndexTablespace( String indexTablespace ) {
+
+	public void setIndexTablespace(String indexTablespace) {
 		this.indexTablespace = indexTablespace;
 	}
 
 	/**
 	 * @return Returns the username.
 	 */
-	
+
 	public String getUsername() {
 		return username;
 	}
 
 	/**
-	 * @param username
-	 *          The username to set.
+	 * @param username The username to set.
 	 */
-	
-	public void setUsername( String username ) {
-		if ( this.accessType == DatabaseMeta.TYPE_ACCESS_JNDI ) {
+
+	public void setUsername(String username) {
+		if (this.accessType == DatabaseMeta.TYPE_ACCESS_JNDI) {
 			this.username = "";
 		}
 		this.username = username;
@@ -280,7 +274,7 @@ public abstract class BaseDatabaseInfo {
 	/**
 	 * @return The extra attributes for this database connection
 	 */
-	
+
 	public Properties getAttributes() {
 		return attributes;
 	}
@@ -288,18 +282,17 @@ public abstract class BaseDatabaseInfo {
 	/**
 	 * Set extra attributes on this database connection
 	 *
-	 * @param attributes
-	 *          The extra attributes to set on this database connection.
+	 * @param attributes The extra attributes to set on this database connection.
 	 */
-	
-	public void setAttributes( Properties attributes ) {
+
+	public void setAttributes(Properties attributes) {
 		this.attributes = attributes;
 	}
 
 	/**
 	 * Clone the basic settings for this connection!
 	 */
-	
+
 	public Object clone() {
 		BaseDatabaseMeta retval = null;
 		try {
@@ -307,8 +300,8 @@ public abstract class BaseDatabaseInfo {
 
 			// CLone the attributes as well...
 			retval.attributes = (Properties) attributes.clone();
-		} catch ( CloneNotSupportedException e ) {
-			throw new RuntimeException( e );
+		} catch (CloneNotSupportedException e) {
+			throw new RuntimeException(e);
 		}
 		return retval;
 	}
@@ -321,12 +314,12 @@ public abstract class BaseDatabaseInfo {
 	/**
 	 * @return the default database port number
 	 */
-	
+
 	public int getDefaultDatabasePort() {
 		return -1; // No default port or not used.
 	}
 
-	 public Map<String, String> getDefaultOptions() {
+	public Map<String, String> getDefaultOptions() {
 		return Collections.emptyMap();
 	}
 
@@ -335,7 +328,7 @@ public abstract class BaseDatabaseInfo {
 	 *
 	 * @return true if we can set a Stream on a field in a PreparedStatement. False if not.
 	 */
-	
+
 	public boolean supportsSetCharacterStream() {
 		return true;
 	}
@@ -343,54 +336,51 @@ public abstract class BaseDatabaseInfo {
 	/**
 	 * @return Whether or not the database can use auto increment type of fields (pk)
 	 */
-	
+
 	public boolean supportsAutoInc() {
 		return true;
 	}
 
-	
-	public String getLimitClause( int nrRows ) {
+
+	public String getLimitClause(int nrRows) {
 		return "";
 	}
 
-	
-	public int getNotFoundTK( boolean use_autoinc ) {
+
+	public int getNotFoundTK(boolean use_autoinc) {
 		return 0;
 	}
 
 	/**
 	 * Get the SQL to get the next value of a sequence. (Oracle/PGSQL only)
 	 *
-	 * @param sequenceName
-	 *          The sequence name
+	 * @param sequenceName The sequence name
 	 * @return the SQL to get the next value of a sequence. (Oracle/PGSQL only)
 	 */
-	
-	public String getSQLNextSequenceValue( String sequenceName ) {
+
+	public String getSQLNextSequenceValue(String sequenceName) {
 		return "";
 	}
 
 	/**
 	 * Get the current value of a database sequence
 	 *
-	 * @param sequenceName
-	 *          The sequence to check
+	 * @param sequenceName The sequence to check
 	 * @return The current value of a database sequence
 	 */
-	
-	public String getSQLCurrentSequenceValue( String sequenceName ) {
+
+	public String getSQLCurrentSequenceValue(String sequenceName) {
 		return "";
 	}
 
 	/**
 	 * Check if a sequence exists.
 	 *
-	 * @param sequenceName
-	 *          The sequence to check
+	 * @param sequenceName The sequence to check
 	 * @return The SQL to get the name of the sequence back from the databases data dictionary
 	 */
-	
-	public String getSQLSequenceExists( String sequenceName ) {
+
+	public String getSQLSequenceExists(String sequenceName) {
 		return "";
 	}
 
@@ -399,7 +389,7 @@ public abstract class BaseDatabaseInfo {
 	 *
 	 * @return true is setFetchSize() is supported!
 	 */
-	
+
 	public boolean isFetchSizeSupported() {
 		return true;
 	}
@@ -409,7 +399,7 @@ public abstract class BaseDatabaseInfo {
 	 *
 	 * @return true if we need a placeholder for auto increment fields in insert statements.
 	 */
-	
+
 	public boolean needsPlaceHolder() {
 		return false;
 	}
@@ -417,7 +407,7 @@ public abstract class BaseDatabaseInfo {
 	/**
 	 * @return true if the database supports schemas
 	 */
-	
+
 	public boolean supportsSchemas() {
 		return true;
 	}
@@ -425,17 +415,16 @@ public abstract class BaseDatabaseInfo {
 	/**
 	 * @return true if the database supports catalogs
 	 */
-	
+
 	public boolean supportsCatalogs() {
 		return true;
 	}
 
 	/**
-	 *
 	 * @return true when the database engine supports empty transaction. (for example Informix does not on a non-ANSI
-	 *         database type!)
+	 * database type!)
 	 */
-	
+
 	public boolean supportsEmptyTransactions() {
 		return true;
 	}
@@ -443,7 +432,7 @@ public abstract class BaseDatabaseInfo {
 	/**
 	 * @return the function for SUM agrregate
 	 */
-	
+
 	public String getFunctionSum() {
 		return "SUM";
 	}
@@ -451,7 +440,7 @@ public abstract class BaseDatabaseInfo {
 	/**
 	 * @return the function for Average agrregate
 	 */
-	
+
 	public String getFunctionAverage() {
 		return "AVG";
 	}
@@ -459,7 +448,7 @@ public abstract class BaseDatabaseInfo {
 	/**
 	 * @return the function for Minimum agrregate
 	 */
-	
+
 	public String getFunctionMinimum() {
 		return "MIN";
 	}
@@ -467,7 +456,7 @@ public abstract class BaseDatabaseInfo {
 	/**
 	 * @return the function for Maximum agrregate
 	 */
-	
+
 	public String getFunctionMaximum() {
 		return "MAX";
 	}
@@ -475,7 +464,7 @@ public abstract class BaseDatabaseInfo {
 	/**
 	 * @return the function for Count agrregate
 	 */
-	
+
 	public String getFunctionCount() {
 		return "COUNT";
 	}
@@ -484,14 +473,12 @@ public abstract class BaseDatabaseInfo {
 	 * Get the schema-table combination to query the right table. Usually that is SCHEMA.TABLENAME, however there are
 	 * exceptions to this rule...
 	 *
-	 * @param schema_name
-	 *          The schema name
-	 * @param table_part
-	 *          The tablename
+	 * @param schema_name The schema name
+	 * @param table_part  The tablename
 	 * @return the schema-table combination to query the right table.
 	 */
-	
-	public String getSchemaTableCombination( String schema_name, String table_part ) {
+
+	public String getSchemaTableCombination(String schema_name, String table_part) {
 		return schema_name + "." + table_part;
 	}
 
@@ -502,19 +489,18 @@ public abstract class BaseDatabaseInfo {
 	 * @param schemaPart
 	 * @param tablePart
 	 * @return quoted schema and table
-	 *
 	 * @deprecated we should phase this out in 5.0, but it's there to keep backwards compatibility in the 4.x releases.
 	 */
 	@Deprecated
-	public String getBackwardsCompatibleSchemaTableCombination( String schemaPart, String tablePart ) {
+	public String getBackwardsCompatibleSchemaTableCombination(String schemaPart, String tablePart) {
 		String schemaTable = "";
-		if ( schemaPart != null && ( schemaPart.contains( getStartQuote() ) || schemaPart.contains( getEndQuote() ) ) ) {
+		if (schemaPart != null && (schemaPart.contains(getStartQuote()) || schemaPart.contains(getEndQuote()))) {
 			schemaTable += schemaPart;
 		} else {
 			schemaTable += getStartQuote() + schemaPart + getEndQuote();
 		}
 		schemaTable += ".";
-		if ( tablePart != null && ( tablePart.contains( getStartQuote() ) || tablePart.contains( getEndQuote() ) ) ) {
+		if (tablePart != null && (tablePart.contains(getStartQuote()) || tablePart.contains(getEndQuote()))) {
 			schemaTable += tablePart;
 		} else {
 			schemaTable += getStartQuote() + tablePart + getEndQuote();
@@ -527,14 +513,12 @@ public abstract class BaseDatabaseInfo {
 	 * properly when quoteFields() was introduced to DatabaseMeta.
 	 *
 	 * @param tablePart
-	 *
 	 * @return quoted table
-	 *
 	 * @deprecated we should phase this out in 5.0, but it's there to keep backwards compatibility in the 4.x releases.
 	 */
 	@Deprecated
-	public String getBackwardsCompatibleTable( String tablePart ) {
-		if ( tablePart != null && ( tablePart.contains( getStartQuote() ) || tablePart.contains( getEndQuote() ) ) ) {
+	public String getBackwardsCompatibleTable(String tablePart) {
+		if (tablePart != null && (tablePart.contains(getStartQuote()) || tablePart.contains(getEndQuote()))) {
 			return tablePart;
 		} else {
 			return getStartQuote() + tablePart + getEndQuote();
@@ -547,7 +531,7 @@ public abstract class BaseDatabaseInfo {
 	 *
 	 * @return The maximum text field length for this database type. (mostly CLOB_LENGTH)
 	 */
-	
+
 	public int getMaxTextFieldLength() {
 		return DatabaseMeta.CLOB_LENGTH;
 	}
@@ -556,9 +540,9 @@ public abstract class BaseDatabaseInfo {
 	 * Get the maximum length of a text field (VARCHAR) for this database connection. If this size is exceeded use a CLOB.
 	 *
 	 * @return The maximum VARCHAR field length for this database type. (mostly identical to getMaxTextFieldLength() -
-	 *         CLOB_LENGTH)
+	 * CLOB_LENGTH)
 	 */
-	
+
 	public int getMaxVARCHARLength() {
 		return DatabaseMeta.CLOB_LENGTH;
 	}
@@ -566,7 +550,7 @@ public abstract class BaseDatabaseInfo {
 	/**
 	 * @return true if the database supports transactions.
 	 */
-	
+
 	public boolean supportsTransactions() {
 		return true;
 	}
@@ -574,7 +558,7 @@ public abstract class BaseDatabaseInfo {
 	/**
 	 * @return true if the database supports sequences
 	 */
-	
+
 	public boolean supportsSequences() {
 		return false;
 	}
@@ -582,7 +566,7 @@ public abstract class BaseDatabaseInfo {
 	/**
 	 * @return true if the database supports bitmap indexes
 	 */
-	
+
 	public boolean supportsBitmapIndex() {
 		return true;
 	}
@@ -590,7 +574,7 @@ public abstract class BaseDatabaseInfo {
 	/**
 	 * @return true if the database JDBC driver supports the setLong command
 	 */
-	
+
 	public boolean supportsSetLong() {
 		return true;
 	}
@@ -598,38 +582,32 @@ public abstract class BaseDatabaseInfo {
 	/**
 	 * Generates the SQL statement to drop a column from the specified table
 	 *
-	 * @param tablename
-	 *          The table to add
-	 * @param v
-	 *          The column defined as a value
-	 * @param tk
-	 *          the name of the technical key field
-	 * @param use_autoinc
-	 *          whether or not this field uses auto increment
-	 * @param pk
-	 *          the name of the primary key field
-	 * @param semicolon
-	 *          whether or not to add a semi-colon behind the statement.
+	 * @param tablename   The table to add
+	 * @param v           The column defined as a value
+	 * @param tk          the name of the technical key field
+	 * @param use_autoinc whether or not this field uses auto increment
+	 * @param pk          the name of the primary key field
+	 * @param semicolon   whether or not to add a semi-colon behind the statement.
 	 * @return the SQL statement to drop a column from the specified table
 	 */
-	
-	public String getDropColumnStatement( String tablename, ValueMetaInterface v, String tk, boolean use_autoinc,
-										  String pk, boolean semicolon ) {
+
+	public String getDropColumnStatement(String tablename, ValueMetaInterface v, String tk, boolean use_autoinc,
+										 String pk, boolean semicolon) {
 		return "ALTER TABLE " + tablename + " DROP " + v.getName() + Const.CR;
 	}
 
 	/**
 	 * @return an array of reserved words for the database type...
 	 */
-	
+
 	public String[] getReservedWords() {
-		return new String[] {};
+		return new String[]{};
 	}
 
 	/**
 	 * @return true if reserved words need to be double quoted ("password", "select", ...)
 	 */
-	
+
 	public boolean quoteReservedWords() {
 		return true;
 	}
@@ -637,7 +615,7 @@ public abstract class BaseDatabaseInfo {
 	/**
 	 * @return The start quote sequence, mostly just double quote, but sometimes [, ...
 	 */
-	
+
 	public String getStartQuote() {
 		return "\"";
 	}
@@ -645,7 +623,7 @@ public abstract class BaseDatabaseInfo {
 	/**
 	 * @return The end quote sequence, mostly just double quote, but sometimes ], ...
 	 */
-	
+
 	public String getEndQuote() {
 		return "\"";
 	}
@@ -653,7 +631,7 @@ public abstract class BaseDatabaseInfo {
 	/**
 	 * @return true if Kettle can create a repository on this type of database.
 	 */
-	
+
 	public boolean supportsRepository() {
 		return false;
 	}
@@ -661,31 +639,31 @@ public abstract class BaseDatabaseInfo {
 	/**
 	 * @return a list of table types to retrieve tables for the database
 	 */
-	
+
 	public String[] getTableTypes() {
-		return new String[] { "TABLE" };
+		return new String[]{"TABLE"};
 	}
 
 	/**
 	 * @return a list of table types to retrieve views for the database
 	 */
-	
+
 	public String[] getViewTypes() {
-		return new String[] { "VIEW" };
+		return new String[]{"VIEW"};
 	}
 
 	/**
 	 * @return a list of table types to retrieve synonyms for the database
 	 */
-	
+
 	public String[] getSynonymTypes() {
-		return new String[] { "SYNONYM" };
+		return new String[]{"SYNONYM"};
 	}
 
 	/**
 	 * @return true if we need to supply the schema-name to getTables in order to get a correct list of items.
 	 */
-	
+
 	public boolean useSchemaNameForTableList() {
 		return false;
 	}
@@ -693,7 +671,7 @@ public abstract class BaseDatabaseInfo {
 	/**
 	 * @return true if the database supports views
 	 */
-	
+
 	public boolean supportsViews() {
 		return true;
 	}
@@ -701,7 +679,7 @@ public abstract class BaseDatabaseInfo {
 	/**
 	 * @return true if the database supports synonyms
 	 */
-	
+
 	public boolean supportsSynonyms() {
 		return false;
 	}
@@ -709,7 +687,7 @@ public abstract class BaseDatabaseInfo {
 	/**
 	 * @return The SQL on this database to get a list of stored procedures.
 	 */
-	
+
 	public String getSQLListOfProcedures() {
 		return null;
 	}
@@ -717,30 +695,28 @@ public abstract class BaseDatabaseInfo {
 	/**
 	 * @return The SQL on this database to get a list of sequences.
 	 */
-	
+
 	public String getSQLListOfSequences() {
 		return null;
 	}
 
 	/**
-	 * @param tableName
-	 *          The table to be truncated.
+	 * @param tableName The table to be truncated.
 	 * @return The SQL statement to truncate a table: remove all rows from it without a transaction
 	 */
-	
-	public String getTruncateTableStatement( String tableName ) {
+
+	public String getTruncateTableStatement(String tableName) {
 		return "TRUNCATE TABLE " + tableName;
 	}
 
 	/**
 	 * Returns the minimal SQL to launch in order to determine the layout of the resultset for a given database table
 	 *
-	 * @param tableName
-	 *          The name of the table to determine the layout for
+	 * @param tableName The name of the table to determine the layout for
 	 * @return The SQL to launch.
 	 */
-	
-	public String getSQLQueryFields( String tableName ) {
+
+	public String getSQLQueryFields(String tableName) {
 		return "SELECT * FROM " + tableName;
 	}
 
@@ -749,37 +725,35 @@ public abstract class BaseDatabaseInfo {
 	 *
 	 * @return true if the database supports roundinf of floating point data on update/insert
 	 */
-	
+
 	public boolean supportsFloatRoundingOnUpdate() {
 		return true;
 	}
 
 	/**
-	 * @param tableNames
-	 *          The names of the tables to lock
+	 * @param tableNames The names of the tables to lock
 	 * @return The SQL command to lock database tables for write purposes. null is returned in case locking is not
-	 *         supported on the target database. null is the default value
+	 * supported on the target database. null is the default value
 	 */
-	
-	public String getSQLLockTables( String[] tableNames ) {
+
+	public String getSQLLockTables(String[] tableNames) {
 		return null;
 	}
 
 	/**
-	 * @param tableNames
-	 *          The names of the tables to unlock
+	 * @param tableNames The names of the tables to unlock
 	 * @return The SQL command to unlock database tables. null is returned in case locking is not supported on the target
-	 *         database. null is the default value
+	 * database. null is the default value
 	 */
-	
-	public String getSQLUnlockTables( String[] tableNames ) {
+
+	public String getSQLUnlockTables(String[] tableNames) {
 		return null;
 	}
 
 	/**
 	 * @return true if the database supports timestamp to date conversion. For example Interbase doesn't support this!
 	 */
-	
+
 	public boolean supportsTimeStampToDateConversion() {
 		return true;
 	}
@@ -787,7 +761,7 @@ public abstract class BaseDatabaseInfo {
 	/**
 	 * @return true if the database JDBC driver supports batch updates For example Interbase doesn't support this!
 	 */
-	
+
 	public boolean supportsBatchUpdates() {
 		return true;
 	}
@@ -795,63 +769,59 @@ public abstract class BaseDatabaseInfo {
 	/**
 	 * @return true if the database supports a boolean, bit, logical, ... datatype The default is false: map to a string.
 	 */
-	
+
 	public boolean supportsBooleanDataType() {
-		String usePool = attributes.getProperty( ATTRIBUTE_SUPPORTS_BOOLEAN_DATA_TYPE, "N" );
-		return "Y".equalsIgnoreCase( usePool );
+		String usePool = attributes.getProperty(ATTRIBUTE_SUPPORTS_BOOLEAN_DATA_TYPE, "N");
+		return "Y".equalsIgnoreCase(usePool);
 	}
 
 	/**
-	 * @param b
-	 *          Set to true if the database supports a boolean, bit, logical, ... datatype
+	 * @param b Set to true if the database supports a boolean, bit, logical, ... datatype
 	 */
-	
-	public void setSupportsBooleanDataType( boolean b ) {
-		attributes.setProperty( ATTRIBUTE_SUPPORTS_BOOLEAN_DATA_TYPE, b ? "Y" : "N" );
+
+	public void setSupportsBooleanDataType(boolean b) {
+		attributes.setProperty(ATTRIBUTE_SUPPORTS_BOOLEAN_DATA_TYPE, b ? "Y" : "N");
 	}
 
 	/**
 	 * @return true if the database supports the Timestamp data type (nanosecond precision and all)
 	 */
-	
+
 	public boolean supportsTimestampDataType() {
-		String supportsTimestamp = attributes.getProperty( ATTRIBUTE_SUPPORTS_TIMESTAMP_DATA_TYPE, "N" );
-		return "Y".equalsIgnoreCase( supportsTimestamp );
+		String supportsTimestamp = attributes.getProperty(ATTRIBUTE_SUPPORTS_TIMESTAMP_DATA_TYPE, "N");
+		return "Y".equalsIgnoreCase(supportsTimestamp);
 	}
 
 	/**
-	 *
-	 * @param b
-	 *          Set to true if the database supports the Timestamp data type (nanosecond precision and all)
+	 * @param b Set to true if the database supports the Timestamp data type (nanosecond precision and all)
 	 */
-	
-	public void setSupportsTimestampDataType( boolean b ) {
-		attributes.setProperty( ATTRIBUTE_SUPPORTS_TIMESTAMP_DATA_TYPE, b ? "Y" : "N" );
+
+	public void setSupportsTimestampDataType(boolean b) {
+		attributes.setProperty(ATTRIBUTE_SUPPORTS_TIMESTAMP_DATA_TYPE, b ? "Y" : "N");
 	}
 
 	/**
 	 * @return true if reserved words' case should be preserved
 	 */
-	
+
 	public boolean preserveReservedCase() {
-		String usePool = attributes.getProperty( ATTRIBUTE_PRESERVE_RESERVED_WORD_CASE, "Y" );
-		return "Y".equalsIgnoreCase( usePool );
+		String usePool = attributes.getProperty(ATTRIBUTE_PRESERVE_RESERVED_WORD_CASE, "Y");
+		return "Y".equalsIgnoreCase(usePool);
 	}
 
 	/**
-	 * @param b
-	 *          Set to true if reserved words' case should be preserved
+	 * @param b Set to true if reserved words' case should be preserved
 	 */
-	
-	public void setPreserveReservedCase( boolean b ) {
-		attributes.setProperty( ATTRIBUTE_PRESERVE_RESERVED_WORD_CASE, b ? "Y" : "N" );
+
+	public void setPreserveReservedCase(boolean b) {
+		attributes.setProperty(ATTRIBUTE_PRESERVE_RESERVED_WORD_CASE, b ? "Y" : "N");
 	}
 
 	/**
 	 * @return true if the database defaults to naming tables and fields in uppercase. True for most databases except for
-	 *         stuborn stuff like Postgres ;-)
+	 * stuborn stuff like Postgres ;-)
 	 */
-	
+
 	public boolean isDefaultingToUppercase() {
 		return true;
 	}
@@ -859,17 +829,17 @@ public abstract class BaseDatabaseInfo {
 	/**
 	 * @return all the extra options that are set to be used for the database URL
 	 */
-	
+
 	public Map<String, String> getExtraOptions() {
 		Map<String, String> map = new Hashtable<String, String>();
 
 		for (Enumeration<Object> keys = attributes.keys(); keys.hasMoreElements(); ) {
 			String attribute = (String) keys.nextElement();
-			if ( attribute.startsWith( ATTRIBUTE_PREFIX_EXTRA_OPTION ) ) {
-				String value = attributes.getProperty( attribute, "" );
+			if (attribute.startsWith(ATTRIBUTE_PREFIX_EXTRA_OPTION)) {
+				String value = attributes.getProperty(attribute, "");
 
 				// Add to the map...
-				map.put( attribute.substring( ATTRIBUTE_PREFIX_EXTRA_OPTION.length() ), value );
+				map.put(attribute.substring(ATTRIBUTE_PREFIX_EXTRA_OPTION.length()), value);
 			}
 		}
 
@@ -879,22 +849,19 @@ public abstract class BaseDatabaseInfo {
 	/**
 	 * Add an extra option to the attributes list
 	 *
-	 * @param databaseTypeCode
-	 *          The database type code for which the option applies
-	 * @param option
-	 *          The option to set
-	 * @param value
-	 *          The value of the option
+	 * @param databaseTypeCode The database type code for which the option applies
+	 * @param option           The option to set
+	 * @param value            The value of the option
 	 */
-	
-	public void addExtraOption( String databaseTypeCode, String option, String value ) {
-		attributes.put( ATTRIBUTE_PREFIX_EXTRA_OPTION + databaseTypeCode + "." + option, value );
+
+	public void addExtraOption(String databaseTypeCode, String option, String value) {
+		attributes.put(ATTRIBUTE_PREFIX_EXTRA_OPTION + databaseTypeCode + "." + option, value);
 	}
 
 	/**
 	 * @return The extra option separator in database URL for this platform (usually this is semicolon ; )
 	 */
-	
+
 	public String getExtraOptionSeparator() {
 		return ";";
 	}
@@ -902,7 +869,7 @@ public abstract class BaseDatabaseInfo {
 	/**
 	 * @return The extra option value separator in database URL for this platform (usually this is the equal sign = )
 	 */
-	
+
 	public String getExtraOptionValueSeparator() {
 		return "=";
 	}
@@ -910,7 +877,7 @@ public abstract class BaseDatabaseInfo {
 	/**
 	 * @return This indicator separates the normal URL from the options
 	 */
-	
+
 	public String getExtraOptionIndicator() {
 		return ";";
 	}
@@ -918,7 +885,7 @@ public abstract class BaseDatabaseInfo {
 	/**
 	 * @return true if the database supports connection options in the URL, false if they are put in a Properties object.
 	 */
-	
+
 	public boolean supportsOptionsInURL() {
 		return true;
 	}
@@ -926,16 +893,16 @@ public abstract class BaseDatabaseInfo {
 	/**
 	 * @return extra help text on the supported options on the selected database platform.
 	 */
-	
+
 	public String getExtraOptionsHelpText() {
 		return null;
 	}
 
 	/**
 	 * @return true if the database JDBC driver supports getBlob on the resultset. If not we must use getBytes() to get
-	 *         the data.
+	 * the data.
 	 */
-	
+
 	public boolean supportsGetBlob() {
 		return true;
 	}
@@ -943,24 +910,23 @@ public abstract class BaseDatabaseInfo {
 	/**
 	 * @return The SQL to execute right after connecting
 	 */
-	
+
 	public String getConnectSQL() {
-		return attributes.getProperty( ATTRIBUTE_SQL_CONNECT );
+		return attributes.getProperty(ATTRIBUTE_SQL_CONNECT);
 	}
 
 	/**
-	 * @param sql
-	 *          The SQL to execute right after connecting
+	 * @param sql The SQL to execute right after connecting
 	 */
-	
-	public void setConnectSQL( String sql ) {
-		attributes.setProperty( ATTRIBUTE_SQL_CONNECT, sql );
+
+	public void setConnectSQL(String sql) {
+		attributes.setProperty(ATTRIBUTE_SQL_CONNECT, sql);
 	}
 
 	/**
 	 * @return true if the database supports setting the maximum number of return rows in a resultset.
 	 */
-	
+
 	public boolean supportsSetMaxRows() {
 		return true;
 	}
@@ -968,173 +934,168 @@ public abstract class BaseDatabaseInfo {
 	/**
 	 * @return true if we want to use a database connection pool
 	 */
-	
+
 	public boolean isUsingConnectionPool() {
-		String usePool = attributes.getProperty( ATTRIBUTE_USE_POOLING );
-		return "Y".equalsIgnoreCase( usePool );
+		String usePool = attributes.getProperty(ATTRIBUTE_USE_POOLING);
+		return "Y".equalsIgnoreCase(usePool);
 	}
 
 	/**
-	 * @param usePool
-	 *          true if we want to use a database connection pool
+	 * @param usePool true if we want to use a database connection pool
 	 */
-	
-	public void setUsingConnectionPool( boolean usePool ) {
-		attributes.setProperty( ATTRIBUTE_USE_POOLING, usePool ? "Y" : "N" );
+
+	public void setUsingConnectionPool(boolean usePool) {
+		attributes.setProperty(ATTRIBUTE_USE_POOLING, usePool ? "Y" : "N");
 	}
 
 	/**
 	 * @return the maximum pool size
 	 */
-	
+
 	public int getMaximumPoolSize() {
 		return Const.toInt(
-				attributes.getProperty( ATTRIBUTE_MAXIMUM_POOL_SIZE ), ConnectionPoolUtil.defaultMaximumNrOfConnections );
+				attributes.getProperty(ATTRIBUTE_MAXIMUM_POOL_SIZE), ConnectionPoolUtil.defaultMaximumNrOfConnections);
 	}
 
 	/**
-	 * @param maximumPoolSize
-	 *          the maximum pool size
+	 * @param maximumPoolSize the maximum pool size
 	 */
-	
-	public void setMaximumPoolSize( int maximumPoolSize ) {
-		attributes.setProperty( ATTRIBUTE_MAXIMUM_POOL_SIZE, Integer.toString( maximumPoolSize ) );
+
+	public void setMaximumPoolSize(int maximumPoolSize) {
+		attributes.setProperty(ATTRIBUTE_MAXIMUM_POOL_SIZE, Integer.toString(maximumPoolSize));
 	}
 
 	/**
 	 * @return the initial pool size
 	 */
-	
+
 	public int getInitialPoolSize() {
 		return Const.toInt(
-				attributes.getProperty( ATTRIBUTE_INITIAL_POOL_SIZE ), ConnectionPoolUtil.defaultInitialNrOfConnections );
+				attributes.getProperty(ATTRIBUTE_INITIAL_POOL_SIZE), ConnectionPoolUtil.defaultInitialNrOfConnections);
 	}
 
 	/**
-	 * @param initialPoolSize
-	 *          the initial pool size
+	 * @param initialPoolSize the initial pool size
 	 */
-	
-	public void setInitialPoolSize( int initialPoolSize ) {
-		attributes.setProperty( ATTRIBUTE_INITIAL_POOL_SIZE, Integer.toString( initialPoolSize ) );
+
+	public void setInitialPoolSize(int initialPoolSize) {
+		attributes.setProperty(ATTRIBUTE_INITIAL_POOL_SIZE, Integer.toString(initialPoolSize));
 	}
 
 	/**
 	 * @return true if we want to use a database connection pool
 	 */
-	
+
 	public boolean isPartitioned() {
-		String isClustered = attributes.getProperty( ATTRIBUTE_IS_CLUSTERED );
-		return "Y".equalsIgnoreCase( isClustered );
+		String isClustered = attributes.getProperty(ATTRIBUTE_IS_CLUSTERED);
+		return "Y".equalsIgnoreCase(isClustered);
 	}
 
 	/**
-	 * @param clustered
-	 *          true if we want to use a database connection pool
+	 * @param clustered true if we want to use a database connection pool
 	 */
-	
-	public void setPartitioned( boolean clustered ) {
-		attributes.setProperty( ATTRIBUTE_IS_CLUSTERED, clustered ? "Y" : "N" );
+
+	public void setPartitioned(boolean clustered) {
+		attributes.setProperty(ATTRIBUTE_IS_CLUSTERED, clustered ? "Y" : "N");
 	}
 
 	/**
 	 * @return the available partition/host/databases/port combinations in the cluster
 	 */
-	
+
 	public PartitionDatabaseMeta[] getPartitioningInformation() {
 		// find the maximum number of attributes starting with ATTRIBUTE_CLUSTER_HOSTNAME_PREFIX
 
 		int nr = 0;
-		while ( ( attributes.getProperty( ATTRIBUTE_CLUSTER_HOSTNAME_PREFIX + nr ) ) != null ) {
+		while ((attributes.getProperty(ATTRIBUTE_CLUSTER_HOSTNAME_PREFIX + nr)) != null) {
 			nr++;
 		}
 
 		PartitionDatabaseMeta[] clusterInfo = new PartitionDatabaseMeta[nr];
 
-		for ( nr = 0; nr < clusterInfo.length; nr++ ) {
-			String partitionId = attributes.getProperty( ATTRIBUTE_CLUSTER_PARTITION_PREFIX + nr );
-			String hostname = attributes.getProperty( ATTRIBUTE_CLUSTER_HOSTNAME_PREFIX + nr );
-			String port = attributes.getProperty( ATTRIBUTE_CLUSTER_PORT_PREFIX + nr );
-			String dbName = attributes.getProperty( ATTRIBUTE_CLUSTER_DBNAME_PREFIX + nr );
-			String username = attributes.getProperty( ATTRIBUTE_CLUSTER_USERNAME_PREFIX + nr );
-			String password = attributes.getProperty( ATTRIBUTE_CLUSTER_PASSWORD_PREFIX + nr );
-			clusterInfo[nr] = new PartitionDatabaseMeta( partitionId, hostname, port, dbName );
-			clusterInfo[nr].setUsername( username );
-			clusterInfo[nr].setPassword( Encr.decryptPasswordOptionallyEncrypted( password ) );
+		for (nr = 0; nr < clusterInfo.length; nr++) {
+			String partitionId = attributes.getProperty(ATTRIBUTE_CLUSTER_PARTITION_PREFIX + nr);
+			String hostname = attributes.getProperty(ATTRIBUTE_CLUSTER_HOSTNAME_PREFIX + nr);
+			String port = attributes.getProperty(ATTRIBUTE_CLUSTER_PORT_PREFIX + nr);
+			String dbName = attributes.getProperty(ATTRIBUTE_CLUSTER_DBNAME_PREFIX + nr);
+			String username = attributes.getProperty(ATTRIBUTE_CLUSTER_USERNAME_PREFIX + nr);
+			String password = attributes.getProperty(ATTRIBUTE_CLUSTER_PASSWORD_PREFIX + nr);
+			clusterInfo[nr] = new PartitionDatabaseMeta(partitionId, hostname, port, dbName);
+			clusterInfo[nr].setUsername(username);
+			clusterInfo[nr].setPassword(Encr.decryptPasswordOptionallyEncrypted(password));
 		}
 
 		return clusterInfo;
 	}
 
 	/**
-	 * @param clusterInfo
-	 *          the available partition/host/databases/port combinations in the cluster
+	 * @param clusterInfo the available partition/host/databases/port combinations in the cluster
 	 */
-	
-	public void setPartitioningInformation( PartitionDatabaseMeta[] clusterInfo ) {
-		for ( int nr = 0; nr < clusterInfo.length; nr++ ) {
+
+	public void setPartitioningInformation(PartitionDatabaseMeta[] clusterInfo) {
+		for (int nr = 0; nr < clusterInfo.length; nr++) {
 			PartitionDatabaseMeta meta = clusterInfo[nr];
 
-			attributes.put( ATTRIBUTE_CLUSTER_PARTITION_PREFIX + nr, Const.NVL( meta.getPartitionId(), "" ) );
-			attributes.put( ATTRIBUTE_CLUSTER_HOSTNAME_PREFIX + nr, Const.NVL( meta.getHostname(), "" ) );
-			attributes.put( ATTRIBUTE_CLUSTER_PORT_PREFIX + nr, Const.NVL( meta.getPort(), "" ) );
-			attributes.put( ATTRIBUTE_CLUSTER_DBNAME_PREFIX + nr, Const.NVL( meta.getDatabaseName(), "" ) );
-			attributes.put( ATTRIBUTE_CLUSTER_USERNAME_PREFIX + nr, Const.NVL( meta.getUsername(), "" ) );
-			attributes.put( ATTRIBUTE_CLUSTER_PASSWORD_PREFIX + nr, Const.NVL( Encr
-					.encryptPasswordIfNotUsingVariables( meta.getPassword() ), "" ) );
+			attributes.put(ATTRIBUTE_CLUSTER_PARTITION_PREFIX + nr, Const.NVL(meta.getPartitionId(), ""));
+			attributes.put(ATTRIBUTE_CLUSTER_HOSTNAME_PREFIX + nr, Const.NVL(meta.getHostname(), ""));
+			attributes.put(ATTRIBUTE_CLUSTER_PORT_PREFIX + nr, Const.NVL(meta.getPort(), ""));
+			attributes.put(ATTRIBUTE_CLUSTER_DBNAME_PREFIX + nr, Const.NVL(meta.getDatabaseName(), ""));
+			attributes.put(ATTRIBUTE_CLUSTER_USERNAME_PREFIX + nr, Const.NVL(meta.getUsername(), ""));
+			attributes.put(ATTRIBUTE_CLUSTER_PASSWORD_PREFIX + nr, Const.NVL(Encr
+					.encryptPasswordIfNotUsingVariables(meta.getPassword()), ""));
 		}
 	}
 
 	/**
 	 * @return The set of properties (newly created object) that contains the connection pooling parameters All
-	 *         environment variables will be replaced here.
+	 * environment variables will be replaced here.
 	 */
-	
+
 	public Properties getConnectionPoolingProperties() {
 		Properties properties = new Properties();
 
-		for ( Iterator<Object> iter = attributes.keySet().iterator(); iter.hasNext(); ) {
+		for (Iterator<Object> iter = attributes.keySet().iterator(); iter.hasNext(); ) {
 			String element = (String) iter.next();
-			if ( element.startsWith( ATTRIBUTE_POOLING_PARAMETER_PREFIX ) ) {
-				String key = element.substring( ATTRIBUTE_POOLING_PARAMETER_PREFIX.length() );
-				String value = attributes.getProperty( element );
-				properties.put( key, value );
+			if (element.startsWith(ATTRIBUTE_POOLING_PARAMETER_PREFIX)) {
+				String key = element.substring(ATTRIBUTE_POOLING_PARAMETER_PREFIX.length());
+				String value = attributes.getProperty(element);
+				properties.put(key, value);
 			}
 		}
 
 		return properties;
 	}
 
-	
-	public void setConnectionPoolingProperties( Properties properties ) {
+
+	public void setConnectionPoolingProperties(Properties properties) {
 		// Clear our the previous set of pool parameters
-		for ( Iterator<Object> iter = attributes.keySet().iterator(); iter.hasNext(); ) {
+		for (Iterator<Object> iter = attributes.keySet().iterator(); iter.hasNext(); ) {
 			String key = (String) iter.next();
-			if ( key.startsWith( ATTRIBUTE_POOLING_PARAMETER_PREFIX ) ) {
-				attributes.remove( key );
+			if (key.startsWith(ATTRIBUTE_POOLING_PARAMETER_PREFIX)) {
+				attributes.remove(key);
 			}
 		}
 
-		for ( Iterator<Object> iter = properties.keySet().iterator(); iter.hasNext(); ) {
+		for (Iterator<Object> iter = properties.keySet().iterator(); iter.hasNext(); ) {
 			String element = (String) iter.next();
-			String value = properties.getProperty( element );
-			if ( !Utils.isEmpty( element ) && !Utils.isEmpty( value ) ) {
-				attributes.put( ATTRIBUTE_POOLING_PARAMETER_PREFIX + element, value );
+			String value = properties.getProperty(element);
+			if (!Utils.isEmpty(element) && !Utils.isEmpty(value)) {
+				attributes.put(ATTRIBUTE_POOLING_PARAMETER_PREFIX + element, value);
 			}
 		}
 	}
 
-	
-	public String getSQLTableExists( String tablename ) {
+
+	public String getSQLTableExists(String tablename) {
 		return "SELECT 1 FROM " + tablename;
 	}
 
-	
-	public String getSQLColumnExists( String columnname, String tablename ) {
+
+	public String getSQLColumnExists(String columnname, String tablename) {
 		return "SELECT " + columnname + " FROM " + tablename;
 	}
 
-	
+
 	public boolean needsToLockAllTables() {
 		return true;
 	}
@@ -1142,97 +1103,92 @@ public abstract class BaseDatabaseInfo {
 	/**
 	 * @return true if the database is streaming results (normally this is an option just for MySQL).
 	 */
-	
+
 	public boolean isStreamingResults() {
-		String usePool = attributes.getProperty( ATTRIBUTE_USE_RESULT_STREAMING, "Y" ); // DEFAULT TO YES!!
-		return "Y".equalsIgnoreCase( usePool );
+		String usePool = attributes.getProperty(ATTRIBUTE_USE_RESULT_STREAMING, "Y"); // DEFAULT TO YES!!
+		return "Y".equalsIgnoreCase(usePool);
 	}
 
 	/**
-	 * @param useStreaming
-	 *          true if we want the database to stream results (normally this is an option just for MySQL).
+	 * @param useStreaming true if we want the database to stream results (normally this is an option just for MySQL).
 	 */
-	
-	public void setStreamingResults( boolean useStreaming ) {
-		attributes.setProperty( ATTRIBUTE_USE_RESULT_STREAMING, useStreaming ? "Y" : "N" );
+
+	public void setStreamingResults(boolean useStreaming) {
+		attributes.setProperty(ATTRIBUTE_USE_RESULT_STREAMING, useStreaming ? "Y" : "N");
 	}
 
 	/**
 	 * @return true if all fields should always be quoted in db
 	 */
-	
+
 	public boolean isQuoteAllFields() {
-		String quoteAllFields = attributes.getProperty( ATTRIBUTE_QUOTE_ALL_FIELDS, "N" ); // DEFAULT TO NO!!
-		return "Y".equalsIgnoreCase( quoteAllFields );
+		String quoteAllFields = attributes.getProperty(ATTRIBUTE_QUOTE_ALL_FIELDS, "N"); // DEFAULT TO NO!!
+		return "Y".equalsIgnoreCase(quoteAllFields);
 	}
 
 	/**
-	 * @param quoteAllFields
-	 *          true if we want the database to stream results (normally this is an option just for MySQL).
+	 * @param quoteAllFields true if we want the database to stream results (normally this is an option just for MySQL).
 	 */
-	
-	public void setQuoteAllFields( boolean quoteAllFields ) {
-		attributes.setProperty( ATTRIBUTE_QUOTE_ALL_FIELDS, quoteAllFields ? "Y" : "N" );
+
+	public void setQuoteAllFields(boolean quoteAllFields) {
+		attributes.setProperty(ATTRIBUTE_QUOTE_ALL_FIELDS, quoteAllFields ? "Y" : "N");
 	}
 
 	/**
 	 * @return true if all identifiers should be forced to lower case
 	 */
-	
+
 	public boolean isForcingIdentifiersToLowerCase() {
-		String forceLowerCase = attributes.getProperty( ATTRIBUTE_FORCE_IDENTIFIERS_TO_LOWERCASE, "N" ); // DEFAULT TO NO!!
-		return "Y".equalsIgnoreCase( forceLowerCase );
+		String forceLowerCase = attributes.getProperty(ATTRIBUTE_FORCE_IDENTIFIERS_TO_LOWERCASE, "N"); // DEFAULT TO NO!!
+		return "Y".equalsIgnoreCase(forceLowerCase);
 	}
 
 	/**
-	 * @param forceLowerCase
-	 *          true if all identifiers should be forced to lower case
+	 * @param forceLowerCase true if all identifiers should be forced to lower case
 	 */
-	
-	public void setForcingIdentifiersToLowerCase( boolean forceLowerCase ) {
-		attributes.setProperty( ATTRIBUTE_FORCE_IDENTIFIERS_TO_LOWERCASE, forceLowerCase ? "Y" : "N" );
+
+	public void setForcingIdentifiersToLowerCase(boolean forceLowerCase) {
+		attributes.setProperty(ATTRIBUTE_FORCE_IDENTIFIERS_TO_LOWERCASE, forceLowerCase ? "Y" : "N");
 	}
 
 	/**
 	 * @return true if all identifiers should be forced to upper case
 	 */
-	
+
 	public boolean isForcingIdentifiersToUpperCase() {
-		String forceUpperCase = attributes.getProperty( ATTRIBUTE_FORCE_IDENTIFIERS_TO_UPPERCASE, "N" ); // DEFAULT TO NO!!
-		return "Y".equalsIgnoreCase( forceUpperCase );
+		String forceUpperCase = attributes.getProperty(ATTRIBUTE_FORCE_IDENTIFIERS_TO_UPPERCASE, "N"); // DEFAULT TO NO!!
+		return "Y".equalsIgnoreCase(forceUpperCase);
 	}
 
 	/**
-	 * @param forceUpperCase
-	 *          true if all identifiers should be forced to upper case
+	 * @param forceUpperCase true if all identifiers should be forced to upper case
 	 */
-	
-	public void setForcingIdentifiersToUpperCase( boolean forceUpperCase ) {
-		attributes.setProperty( ATTRIBUTE_FORCE_IDENTIFIERS_TO_UPPERCASE, forceUpperCase ? "Y" : "N" );
+
+	public void setForcingIdentifiersToUpperCase(boolean forceUpperCase) {
+		attributes.setProperty(ATTRIBUTE_FORCE_IDENTIFIERS_TO_UPPERCASE, forceUpperCase ? "Y" : "N");
 	}
 
 	/**
 	 * @return true if we use a double decimal separator to specify schema/table combinations on MS-SQL server
 	 */
-	
+
 	public boolean isUsingDoubleDecimalAsSchemaTableSeparator() {
-		String usePool = attributes.getProperty( ATTRIBUTE_MSSQL_DOUBLE_DECIMAL_SEPARATOR, "N" ); // DEFAULT TO YES!!
-		return "Y".equalsIgnoreCase( usePool );
+		String usePool = attributes.getProperty(ATTRIBUTE_MSSQL_DOUBLE_DECIMAL_SEPARATOR, "N"); // DEFAULT TO YES!!
+		return "Y".equalsIgnoreCase(usePool);
 	}
 
 	/**
-	 * @param useDoubleDecimalSeparator
-	 *          true if we should use a double decimal separator to specify schema/table combinations on MS-SQL server
+	 * @param useDoubleDecimalSeparator true if we should use a double decimal separator to specify schema/table combinations on MS-SQL server
 	 */
-	
-	public void setUsingDoubleDecimalAsSchemaTableSeparator( boolean useDoubleDecimalSeparator ) {
-		attributes.setProperty( ATTRIBUTE_MSSQL_DOUBLE_DECIMAL_SEPARATOR, useDoubleDecimalSeparator ? "Y" : "N" );
+
+	public void setUsingDoubleDecimalAsSchemaTableSeparator(boolean useDoubleDecimalSeparator) {
+		attributes.setProperty(ATTRIBUTE_MSSQL_DOUBLE_DECIMAL_SEPARATOR, useDoubleDecimalSeparator ? "Y" : "N");
 	}
 
 	/**
 	 * @return true if this database needs a transaction to perform a query (auto-commit turned off).
 	 */
-	
+
 	public boolean isRequiringTransactionsOnQueries() {
 		return true;
 	}
@@ -1243,7 +1199,7 @@ public abstract class BaseDatabaseInfo {
 	 *
 	 * @return the name of the database test factory to use.
 	 */
-	
+
 	public String getDatabaseFactoryName() {
 		return DatabaseFactory.class.getName();
 	}
@@ -1251,38 +1207,36 @@ public abstract class BaseDatabaseInfo {
 	/**
 	 * @return The preferred schema name of this database connection.
 	 */
-	
+
 	public String getPreferredSchemaName() {
-		return attributes.getProperty( ATTRIBUTE_PREFERRED_SCHEMA_NAME );
+		return attributes.getProperty(ATTRIBUTE_PREFERRED_SCHEMA_NAME);
 	}
 
 	/**
-	 * @param preferredSchemaName
-	 *          The preferred schema name of this database connection.
+	 * @param preferredSchemaName The preferred schema name of this database connection.
 	 */
-	
-	public void setPreferredSchemaName( String preferredSchemaName ) {
-		attributes.setProperty( ATTRIBUTE_PREFERRED_SCHEMA_NAME, preferredSchemaName );
+
+	public void setPreferredSchemaName(String preferredSchemaName) {
+		attributes.setProperty(ATTRIBUTE_PREFERRED_SCHEMA_NAME, preferredSchemaName);
 	}
 
 	/**
 	 * Verifies on the specified database connection if an index exists on the fields with the specified name.
 	 *
-	 * @param database
-	 *          a connected database
+	 * @param database   a connected database
 	 * @param schemaName
 	 * @param tableName
 	 * @param idx_fields
 	 * @return true if the index exists, false if it doesn't.
 	 * @throws KettleDatabaseException
 	 */
-	
-	public boolean checkIndexExists( Database database, String schemaName, String tableName, String[] idx_fields ) throws KettleDatabaseException {
 
-		String tablename = database.getDatabaseMeta().getQuotedSchemaTableCombination( schemaName, tableName );
+	public boolean checkIndexExists(Database database, String schemaName, String tableName, String[] idx_fields) throws KettleDatabaseException {
+
+		String tablename = database.getDatabaseMeta().getQuotedSchemaTableCombination(schemaName, tableName);
 
 		boolean[] exists = new boolean[idx_fields.length];
-		for ( int i = 0; i < exists.length; i++ ) {
+		for (int i = 0; i < exists.length; i++) {
 			exists[i] = false;
 		}
 
@@ -1290,74 +1244,72 @@ public abstract class BaseDatabaseInfo {
 			// Get a list of all the indexes for this table
 			ResultSet indexList = null;
 			try {
-				indexList = database.getDatabaseMetaData().getIndexInfo( null, null, tablename, false, true );
-				while ( indexList.next() ) {
+				indexList = database.getDatabaseMetaData().getIndexInfo(null, null, tablename, false, true);
+				while (indexList.next()) {
 					// String tablen = indexList.getString("TABLE_NAME");
 					// String indexn = indexList.getString("INDEX_NAME");
-					String column = indexList.getString( "COLUMN_NAME" );
+					String column = indexList.getString("COLUMN_NAME");
 					// int pos = indexList.getShort("ORDINAL_POSITION");
 					// int type = indexList.getShort("TYPE");
 
-					int idx = Const.indexOfString( column, idx_fields );
-					if ( idx >= 0 ) {
+					int idx = Const.indexOfString(column, idx_fields);
+					if (idx >= 0) {
 						exists[idx] = true;
 					}
 				}
 			} finally {
-				if ( indexList != null ) {
+				if (indexList != null) {
 					indexList.close();
 				}
 			}
 
 			// See if all the fields are indexed...
 			boolean all = true;
-			for ( int i = 0; i < exists.length && all; i++ ) {
-				if ( !exists[i] ) {
+			for (int i = 0; i < exists.length && all; i++) {
+				if (!exists[i]) {
 					all = false;
 				}
 			}
 
 			return all;
-		} catch ( Exception e ) {
-			throw new KettleDatabaseException( "Unable to determine if indexes exists on table [" + tablename + "]", e );
+		} catch (Exception e) {
+			throw new KettleDatabaseException("Unable to determine if indexes exists on table [" + tablename + "]", e);
 		}
 
 	}
 
 	/**
 	 * @return true if the database supports the NOMAXVALUE sequence option. The default is false, AS/400 and DB2 support
-	 *         this.
+	 * this.
 	 */
-	
+
 	public boolean supportsSequenceNoMaxValueOption() {
 		return false;
 	}
 
 	/**
 	 * @return true if we need to append the PRIMARY KEY block in the create table block after the fields, required for
-	 *         Cache.
+	 * Cache.
 	 */
-	
+
 	public boolean requiresCreateTablePrimaryKeyAppend() {
 		return false;
 	}
 
 	/**
 	 * @return true if the database requires you to cast a parameter to varchar before comparing to null. Only required
-	 *         for DB2 and Vertica
-	 *
+	 * for DB2 and Vertica
 	 */
-	
+
 	public boolean requiresCastToVariousForIsNull() {
 		return false;
 	}
 
 	/**
 	 * @return Handles the special case of DB2 where the display size returned is twice the precision. In that case, the
-	 *         length is the precision.
-	 *
+	 * length is the precision.
 	 */
-	
+
 	public boolean isDisplaySizeTwiceThePrecision() {
 		return false;
 	}
@@ -1366,18 +1318,18 @@ public abstract class BaseDatabaseInfo {
 	 * Most databases allow you to retrieve result metadata by preparing a SELECT statement.
 	 *
 	 * @return true if the database supports retrieval of query metadata from a prepared statement. False if the query
-	 *         needs to be executed first.
+	 * needs to be executed first.
 	 */
-	
+
 	public boolean supportsPreparedStatementMetadataRetrieval() {
 		return true;
 	}
 
 	/**
 	 * @return true if this database only supports metadata retrieval on a result set, never on a statement (even if the
-	 *         statement has been executed)
+	 * statement has been executed)
 	 */
-	
+
 	public boolean supportsResultSetMetadataRetrievalOnly() {
 		return false;
 	}
@@ -1386,15 +1338,15 @@ public abstract class BaseDatabaseInfo {
 	 * @param tableName
 	 * @return true if the specified table is a system table
 	 */
-	
-	public boolean isSystemTable( String tableName ) {
+
+	public boolean isSystemTable(String tableName) {
 		return false;
 	}
 
 	/**
 	 * @return true if the database supports newlines in a SQL statements.
 	 */
-	
+
 	public boolean supportsNewLinesInSQL() {
 		return true;
 	}
@@ -1402,7 +1354,7 @@ public abstract class BaseDatabaseInfo {
 	/**
 	 * @return the SQL to retrieve the list of schemas or null if the JDBC metadata needs to be used.
 	 */
-	
+
 	public String getSQLListOfSchemas() {
 		return null;
 	}
@@ -1410,7 +1362,7 @@ public abstract class BaseDatabaseInfo {
 	/**
 	 * @return The maximum number of columns in a database, <=0 means: no known limit
 	 */
-	
+
 	public int getMaxColumnsInIndex() {
 		return 0;
 	}
@@ -1418,7 +1370,7 @@ public abstract class BaseDatabaseInfo {
 	/**
 	 * @return true if the database supports error handling (recovery of failure) while doing batch updates.
 	 */
-	
+
 	public boolean supportsErrorHandlingOnBatchUpdates() {
 		return true;
 	}
@@ -1426,32 +1378,29 @@ public abstract class BaseDatabaseInfo {
 	/**
 	 * Get the SQL to insert a new empty unknown record in a dimension.
 	 *
-	 * @param schemaTable
-	 *          the schema-table name to insert into
-	 * @param keyField
-	 *          The key field
-	 * @param versionField
-	 *          the version field
+	 * @param schemaTable  the schema-table name to insert into
+	 * @param keyField     The key field
+	 * @param versionField the version field
 	 * @return the SQL to insert the unknown record into the SCD.
 	 */
-	
-	public String getSQLInsertAutoIncUnknownDimensionRow( String schemaTable, String keyField, String versionField ) {
+
+	public String getSQLInsertAutoIncUnknownDimensionRow(String schemaTable, String keyField, String versionField) {
 		return "insert into " + schemaTable + "(" + keyField + ", " + versionField + ") values (0, 1)";
 	}
 
 	/**
 	 * @return true if this is a relational database you can explore. Return false for SAP, PALO, etc.
 	 */
-	
+
 	public boolean isExplorable() {
 		return true;
 	}
 
 	/**
 	 * @return The name of the XUL overlay file to display extra options. This is only used in case of a non-standard
-	 *         plugin. Usually this method returns null.
+	 * plugin. Usually this method returns null.
 	 */
-	
+
 	public String getXulOverlayFile() {
 		return null;
 	}
@@ -1460,11 +1409,11 @@ public abstract class BaseDatabaseInfo {
 	 * @param string
 	 * @return A string that is properly quoted for use in a SQL statement (insert, update, delete, etc)
 	 */
-	
-	public String quoteSQLString( String string ) {
-		string = string.replaceAll( "'", "''" );
-		string = string.replaceAll( "\\n", "\\\\n" );
-		string = string.replaceAll( "\\r", "\\\\r" );
+
+	public String quoteSQLString(String string) {
+		string = string.replaceAll("'", "''");
+		string = string.replaceAll("\\n", "\\\\n");
+		string = string.replaceAll("\\r", "\\\\r");
 		return "'" + string + "'";
 	}
 
@@ -1474,30 +1423,29 @@ public abstract class BaseDatabaseInfo {
 	 * @param tableName
 	 * @return
 	 */
-	
-	public String getSelectCountStatement( String tableName ) {
+
+	public String getSelectCountStatement(String tableName) {
 		return SELECT_COUNT_STATEMENT + " " + tableName;
 	}
 
-	
-	public String generateColumnAlias( int columnIndex, String suggestedName ) {
-		return "COL" + Integer.toString( columnIndex );
+
+	public String generateColumnAlias(int columnIndex, String suggestedName) {
+		return "COL" + Integer.toString(columnIndex);
 	}
 
 	/**
 	 * Parse all possible statements from the provided SQL script.
 	 *
-	 * @param sqlScript
-	 *          Raw SQL Script to be parsed into executable statements.
+	 * @param sqlScript Raw SQL Script to be parsed into executable statements.
 	 * @return List of parsed SQL statements to be executed separately.
 	 */
-	
-	public List<String> parseStatements( String sqlScript ) {
 
-		List<SqlScriptStatement> scriptStatements = getSqlScriptStatements( sqlScript );
+	public List<String> parseStatements(String sqlScript) {
+
+		List<SqlScriptStatement> scriptStatements = getSqlScriptStatements(sqlScript);
 		List<String> statements = new ArrayList<String>();
-		for ( SqlScriptStatement scriptStatement : scriptStatements ) {
-			statements.add( scriptStatement.getStatement() );
+		for (SqlScriptStatement scriptStatement : scriptStatements) {
+			statements.add(scriptStatement.getStatement());
 		}
 		return statements;
 	}
@@ -1505,84 +1453,83 @@ public abstract class BaseDatabaseInfo {
 	/**
 	 * Parse the statements in the provided SQL script, provide more information about where each was found in the script.
 	 *
-	 * @param sqlScript
-	 *          Raw SQL Script to be parsed into executable statements.
+	 * @param sqlScript Raw SQL Script to be parsed into executable statements.
 	 * @return List of SQL script statements to be executed separately.
 	 */
-	
-	public List<SqlScriptStatement> getSqlScriptStatements( String sqlScript ) {
+
+	public List<SqlScriptStatement> getSqlScriptStatements(String sqlScript) {
 		List<SqlScriptStatement> statements = new ArrayList<SqlScriptStatement>();
 		String all = sqlScript;
 		int from = 0;
 		int to = 0;
 		int length = all.length();
 
-		while ( to < length ) {
-			char c = all.charAt( to );
+		while (to < length) {
+			char c = all.charAt(to);
 
 			// Skip comment lines...
 			//
-			while ( all.substring( from ).startsWith( "--" ) ) {
-				int nextLineIndex = all.indexOf( Const.CR, from );
+			while (all.substring(from).startsWith("--")) {
+				int nextLineIndex = all.indexOf(Const.CR, from);
 				from = nextLineIndex + Const.CR.length();
-				if ( to >= length ) {
+				if (to >= length) {
 					break;
 				}
-				c = all.charAt( c );
+				c = all.charAt(c);
 			}
-			if ( to >= length ) {
+			if (to >= length) {
 				break;
 			}
 
 			// Skip over double quotes...
 			//
-			if ( c == '"' ) {
-				int nextDQuoteIndex = all.indexOf( '"', to + 1 );
-				if ( nextDQuoteIndex >= 0 ) {
+			if (c == '"') {
+				int nextDQuoteIndex = all.indexOf('"', to + 1);
+				if (nextDQuoteIndex >= 0) {
 					to = nextDQuoteIndex + 1;
 				}
 			}
 
 			// Skip over back-ticks
-			if ( c == '`' ) {
-				int nextBacktickIndex = all.indexOf( '`', to + 1 );
-				if ( nextBacktickIndex >= 0 ) {
+			if (c == '`') {
+				int nextBacktickIndex = all.indexOf('`', to + 1);
+				if (nextBacktickIndex >= 0) {
 					to = nextBacktickIndex + 1;
 				}
 			}
 
-			c = all.charAt( to );
-			if ( c == '\'' ) {
+			c = all.charAt(to);
+			if (c == '\'') {
 				boolean skip = true;
 
 				// Don't skip over \' or ''
 				//
-				if ( to > 0 ) {
-					char prevChar = all.charAt( to - 1 );
-					if ( prevChar == '\\' || prevChar == '\'' ) {
+				if (to > 0) {
+					char prevChar = all.charAt(to - 1);
+					if (prevChar == '\\' || prevChar == '\'') {
 						skip = false;
 					}
 				}
 
 				// Jump to the next quote and continue from there.
 				//
-				while ( skip ) {
-					int nextQuoteIndex = all.indexOf( '\'', to + 1 );
-					if ( nextQuoteIndex >= 0 ) {
+				while (skip) {
+					int nextQuoteIndex = all.indexOf('\'', to + 1);
+					if (nextQuoteIndex >= 0) {
 						to = nextQuoteIndex + 1;
 
 						skip = false;
 
-						if ( to < all.length() ) {
-							char nextChar = all.charAt( to );
-							if ( nextChar == '\'' ) {
+						if (to < all.length()) {
+							char nextChar = all.charAt(to);
+							if (nextChar == '\'') {
 								skip = true;
 								to++;
 							}
 						}
-						if ( to > 0 ) {
-							char prevChar = all.charAt( to - 2 );
-							if ( prevChar == '\\' ) {
+						if (to > 0) {
+							char prevChar = all.charAt(to - 2);
+							if (prevChar == '\\') {
 								skip = true;
 								to++;
 							}
@@ -1591,19 +1538,19 @@ public abstract class BaseDatabaseInfo {
 				}
 			}
 
-			c = all.charAt( to );
+			c = all.charAt(to);
 
 			// end of statement
-			if ( c == ';' || to >= length - 1 ) {
-				if ( to >= length - 1 ) {
+			if (c == ';' || to >= length - 1) {
+				if (to >= length - 1) {
 					to++; // grab last char also!
 				}
 
-				String stat = all.substring( from, to );
-				if ( !onlySpaces( stat ) ) {
-					String s = Const.trim( stat );
-					statements.add( new SqlScriptStatement(
-							s, from, to, s.toUpperCase().startsWith( "SELECT" ) || s.toLowerCase().startsWith( "show" ) ) );
+				String stat = all.substring(from, to);
+				if (!onlySpaces(stat)) {
+					String s = Const.trim(stat);
+					statements.add(new SqlScriptStatement(
+							s, from, to, s.toUpperCase().startsWith("SELECT") || s.toLowerCase().startsWith("show")));
 				}
 				to++;
 				from = to;
@@ -1618,10 +1565,10 @@ public abstract class BaseDatabaseInfo {
 	 * @param str
 	 * @return True if {@code str} contains only spaces.
 	 */
-	protected boolean onlySpaces( String str ) {
-		for ( int i = 0; i < str.length(); i++ ) {
-			int c = str.charAt( i );
-			if ( c != ' ' && c != '\t' && c != '\n' && c != '\r' ) {
+	protected boolean onlySpaces(String str) {
+		for (int i = 0; i < str.length(); i++) {
+			int c = str.charAt(i);
+			if (c != ' ' && c != '\t' && c != '\n' && c != '\r') {
 				return false;
 			}
 		}
@@ -1631,7 +1578,7 @@ public abstract class BaseDatabaseInfo {
 	/**
 	 * @return true if the database is a MySQL variant, like MySQL 5.1, InfiniDB, InfoBright, and so on.
 	 */
-	
+
 	public boolean isMySQLVariant() {
 		return false;
 	}
@@ -1655,72 +1602,72 @@ public abstract class BaseDatabaseInfo {
 	 *
 	 * @return
 	 */
-	
+
 	public boolean releaseSavepoint() {
 		return releaseSavepoint;
 	}
 
-	public Long getNextBatchIdUsingSequence( String sequenceName, String schemaName, DatabaseMeta dbm, Database ldb ) throws KettleDatabaseException {
-		return ldb.getNextSequenceValue( schemaName, sequenceName, null );
+	public Long getNextBatchIdUsingSequence(String sequenceName, String schemaName, DatabaseMeta dbm, Database ldb) throws KettleDatabaseException {
+		return ldb.getNextSequenceValue(schemaName, sequenceName, null);
 	}
 
-	public Long getNextBatchIdUsingAutoIncSQL( String autoIncSQL, DatabaseMeta dbm, Database ldb ) throws KettleDatabaseException {
+	public Long getNextBatchIdUsingAutoIncSQL(String autoIncSQL, DatabaseMeta dbm, Database ldb) throws KettleDatabaseException {
 		Long rtn = null;
-		PreparedStatement stmt = ldb.prepareSQL( autoIncSQL, true );
+		PreparedStatement stmt = ldb.prepareSQL(autoIncSQL, true);
 		try {
 			stmt.executeUpdate();
-			RowMetaAndData rmad = ldb.getGeneratedKeys( stmt );
-			if ( rmad.getRowMeta().size() > 0 ) {
-				rtn = rmad.getRowMeta().getInteger( rmad.getData(), 0 );
+			RowMetaAndData rmad = ldb.getGeneratedKeys(stmt);
+			if (rmad.getRowMeta().size() > 0) {
+				rtn = rmad.getRowMeta().getInteger(rmad.getData(), 0);
 			} else {
-				throw new KettleDatabaseException( "Unable to retrieve value of auto-generated technical key : "
-						+ "no value found!" );
+				throw new KettleDatabaseException("Unable to retrieve value of auto-generated technical key : "
+						+ "no value found!");
 			}
-		} catch ( KettleValueException kve ) {
-			throw new KettleDatabaseException( kve );
-		} catch ( SQLException sqlex ) {
-			throw new KettleDatabaseException( sqlex );
+		} catch (KettleValueException kve) {
+			throw new KettleDatabaseException(kve);
+		} catch (SQLException sqlex) {
+			throw new KettleDatabaseException(sqlex);
 		} finally {
 			try {
 				stmt.close();
-			} catch ( SQLException ignored ) {
+			} catch (SQLException ignored) {
 				// Ignored
 			}
 		}
 		return rtn;
 	}
 
-	public Long getNextBatchIdUsingLockTables( DatabaseMeta dbm, Database ldb, String schemaName, String tableName,
-											   String fieldName ) throws KettleDatabaseException {
+	public Long getNextBatchIdUsingLockTables(DatabaseMeta dbm, Database ldb, String schemaName, String tableName,
+											  String fieldName) throws KettleDatabaseException {
 		// The old way of doing things...
 		Long rtn = null;
 		// Make sure we lock that table to avoid concurrency issues
-		String schemaAndTable = dbm.getQuotedSchemaTableCombination( schemaName, tableName );
-		ldb.lockTables( new String[] { schemaAndTable, } );
+		String schemaAndTable = dbm.getQuotedSchemaTableCombination(schemaName, tableName);
+		ldb.lockTables(new String[]{schemaAndTable,});
 		try {
 
 			// Now insert value -1 to create a real write lock blocking the other
 			// requests.. FCFS
-			String sql = "INSERT INTO " + schemaAndTable + " (" + dbm.quoteField( fieldName ) + ") values (-1)";
-			ldb.execStatement( sql );
+			String sql = "INSERT INTO " + schemaAndTable + " (" + dbm.quoteField(fieldName) + ") values (-1)";
+			ldb.execStatement(sql);
 
 			// Now this next lookup will stall on the other connections
 			//
-			rtn = ldb.getNextValue( null, schemaName, tableName, fieldName );
+			rtn = ldb.getNextValue(null, schemaName, tableName, fieldName);
 		} finally {
 			// Remove the -1 record again...
-			String sql = "DELETE FROM " + schemaAndTable + " WHERE " + dbm.quoteField( fieldName ) + "= -1";
-			ldb.execStatement( sql );
-			ldb.unlockTables( new String[] { schemaAndTable, } );
+			String sql = "DELETE FROM " + schemaAndTable + " WHERE " + dbm.quoteField(fieldName) + "= -1";
+			ldb.execStatement(sql);
+			ldb.unlockTables(new String[]{schemaAndTable,});
 		}
 		return rtn;
 	}
 
-	
-	public Long getNextBatchId( DatabaseMeta dbm, Database ldb,
-								String schemaName, String tableName, String fieldName ) throws KettleDatabaseException {
+
+	public Long getNextBatchId(DatabaseMeta dbm, Database ldb,
+							   String schemaName, String tableName, String fieldName) throws KettleDatabaseException {
 		// Always take off autocommit.
-		ldb.setCommit( 10 );
+		ldb.setCommit(10);
 
 		//
 		// Temporary work-around to handle batch-id from extended options
@@ -1730,143 +1677,130 @@ public abstract class BaseDatabaseInfo {
 		Map<String, String> connectionExtraOptions = this.getExtraOptions();
 		String sequenceProp = this.getPluginId() + "." + SEQUENCE_FOR_BATCH_ID;
 		String autoIncSQLProp = this.getPluginId() + "." + AUTOINCREMENT_SQL_FOR_BATCH_ID;
-		if ( connectionExtraOptions != null ) {
-			if ( this.supportsSequences() && connectionExtraOptions.containsKey( sequenceProp ) ) {
-				return getNextBatchIdUsingSequence( connectionExtraOptions.get( sequenceProp ), schemaName, dbm, ldb );
-			} else if ( this.supportsAutoInc() && connectionExtraOptions.containsKey( autoIncSQLProp ) ) {
-				return getNextBatchIdUsingAutoIncSQL( connectionExtraOptions.get( autoIncSQLProp ), dbm, ldb );
+		if (connectionExtraOptions != null) {
+			if (this.supportsSequences() && connectionExtraOptions.containsKey(sequenceProp)) {
+				return getNextBatchIdUsingSequence(connectionExtraOptions.get(sequenceProp), schemaName, dbm, ldb);
+			} else if (this.supportsAutoInc() && connectionExtraOptions.containsKey(autoIncSQLProp)) {
+				return getNextBatchIdUsingAutoIncSQL(connectionExtraOptions.get(autoIncSQLProp), dbm, ldb);
 			}
 		}
-		return getNextBatchIdUsingLockTables( dbm, ldb, schemaName, tableName, fieldName );
+		return getNextBatchIdUsingLockTables(dbm, ldb, schemaName, tableName, fieldName);
 	}
 
 	/**
 	 * Returns the tablespace DDL fragment for a "Data" tablespace. In most databases that use tablespaces this is where
 	 * the tables are to be created.
 	 *
-	 * @param variables
-	 *          variables used for possible substitution
-	 * @param databaseMeta
-	 *          databaseMeta the database meta used for possible string enclosure of the tablespace. This method needs
-	 *          this as this is done after environmental substitution.
-	 *
+	 * @param variables    variables used for possible substitution
+	 * @param databaseMeta databaseMeta the database meta used for possible string enclosure of the tablespace. This method needs
+	 *                     this as this is done after environmental substitution.
 	 * @return String the tablespace name for tables in the format "tablespace TABLESPACE_NAME". The TABLESPACE_NAME and
-	 *         the passed DatabaseMata determines if TABLESPACE_NAME is to be enclosed in quotes.
+	 * the passed DatabaseMata determines if TABLESPACE_NAME is to be enclosed in quotes.
 	 */
-	
-	public String getDataTablespaceDDL( VariableSpace variables, DatabaseMeta databaseMeta ) {
-		return getTablespaceDDL( variables, databaseMeta, databaseMeta.getDatabaseInterface().getDataTablespace() );
+
+	public String getDataTablespaceDDL(VariableSpace variables, DatabaseMeta databaseMeta) {
+		return getTablespaceDDL(variables, databaseMeta, databaseMeta.getDatabaseInterface().getDataTablespace());
 	}
 
 	/**
 	 * Returns the tablespace DDL fragment for a "Index" tablespace.
 	 *
-	 * @param variables
-	 *          variables used for possible substitution
-	 * @param databaseMeta
-	 *          databaseMeta the database meta used for possible string enclosure of the tablespace. This method needs
-	 *          this as this is done after environmental substitution.
-	 *
+	 * @param variables    variables used for possible substitution
+	 * @param databaseMeta databaseMeta the database meta used for possible string enclosure of the tablespace. This method needs
+	 *                     this as this is done after environmental substitution.
 	 * @return String the tablespace name for indices in the format "tablespace TABLESPACE_NAME". The TABLESPACE_NAME and
-	 *         the passed DatabaseMata determines if TABLESPACE_NAME is to be enclosed in quotes.
+	 * the passed DatabaseMata determines if TABLESPACE_NAME is to be enclosed in quotes.
 	 */
-	
-	public String getIndexTablespaceDDL( VariableSpace variables, DatabaseMeta databaseMeta ) {
-		return getTablespaceDDL( variables, databaseMeta, databaseMeta.getDatabaseInterface().getIndexTablespace() );
+
+	public String getIndexTablespaceDDL(VariableSpace variables, DatabaseMeta databaseMeta) {
+		return getTablespaceDDL(variables, databaseMeta, databaseMeta.getDatabaseInterface().getIndexTablespace());
 	}
 
 	/**
 	 * Returns an empty string as most databases do not support tablespaces. Subclasses can override this method to
 	 * generate the DDL.
 	 *
-	 * @param variables
-	 *          variables needed for variable substitution.
-	 * @param databaseMeta
-	 *          databaseMeta needed for it's quoteField method. Since we are doing variable substitution we need to meta
-	 *          so that we can act on the variable substitution first and then the creation of the entire string that will
-	 *          be retuned.
-	 * @param tablespaceName
-	 *          tablespaceName name of the tablespace.
-	 *
+	 * @param variables      variables needed for variable substitution.
+	 * @param databaseMeta   databaseMeta needed for it's quoteField method. Since we are doing variable substitution we need to meta
+	 *                       so that we can act on the variable substitution first and then the creation of the entire string that will
+	 *                       be retuned.
+	 * @param tablespaceName tablespaceName name of the tablespace.
 	 * @return String an empty String as most databases do not use tablespaces.
 	 */
-	public String getTablespaceDDL( VariableSpace variables, DatabaseMeta databaseMeta, String tablespaceName ) {
+	public String getTablespaceDDL(VariableSpace variables, DatabaseMeta databaseMeta, String tablespaceName) {
 		return "";
 	}
 
 	/**
 	 * This method allows a database dialect to convert database specific data types to Kettle data types.
 	 *
-	 * @param rs
-	 *          The result set to use
-	 * @param val
-	 *          The description of the value to retrieve
-	 * @param i
-	 *          the index on which we need to retrieve the value, 0-based.
+	 * @param rs  The result set to use
+	 * @param val The description of the value to retrieve
+	 * @param i   the index on which we need to retrieve the value, 0-based.
 	 * @return The correctly converted Kettle data type corresponding to the valueMeta description.
 	 * @throws KettleDatabaseException
 	 */
-	
-	public Object getValueFromResultSet( ResultSet rs, ValueMetaInterface val, int i ) throws KettleDatabaseException {
 
-		return val.getValueFromResultSet( this, rs, i );
+	public Object getValueFromResultSet(ResultSet rs, ValueMetaInterface val, int i) throws KettleDatabaseException {
+
+		return val.getValueFromResultSet(this, rs, i);
 
 	}
 
 	/**
 	 * @return true if the database supports the use of safe-points and if it is appropriate to ever use it (default to
-	 *         false)
+	 * false)
 	 */
-	
+
 	public boolean useSafePoints() {
 		return false;
 	}
 
 	/**
 	 * @return true if the database supports error handling (the default). Returns false for certain databases (SQLite)
-	 *         that invalidate a prepared statement or even the complete connection when an error occurs.
+	 * that invalidate a prepared statement or even the complete connection when an error occurs.
 	 */
-	
+
 	public boolean supportsErrorHandling() {
 		return true;
 	}
 
-	
-	public String getSQLValue( ValueMetaInterface valueMeta, Object valueData, String dateFormat ) throws KettleValueException {
+
+	public String getSQLValue(ValueMetaInterface valueMeta, Object valueData, String dateFormat) throws KettleValueException {
 
 		StringBuilder ins = new StringBuilder();
 
-		if ( valueMeta.isNull( valueData ) ) {
-			ins.append( "null" );
+		if (valueMeta.isNull(valueData)) {
+			ins.append("null");
 		} else {
 			// Normal cases...
 			//
-			switch ( valueMeta.getType() ) {
+			switch (valueMeta.getType()) {
 				case ValueMetaInterface.TYPE_BOOLEAN:
 				case ValueMetaInterface.TYPE_STRING:
-					String string = valueMeta.getString( valueData );
+					String string = valueMeta.getString(valueData);
 					// Have the database dialect do the quoting.
 					// This also adds the single quotes around the string (thanks to PostgreSQL)
 					//
-					string = quoteSQLString( string );
-					ins.append( string );
+					string = quoteSQLString(string);
+					ins.append(string);
 					break;
 				case ValueMetaInterface.TYPE_DATE:
-					Date date = valueMeta.getDate( valueData );
+					Date date = valueMeta.getDate(valueData);
 
-					if ( Utils.isEmpty( dateFormat ) ) {
-						ins.append( "'" + valueMeta.getString( valueData ) + "'" );
+					if (Utils.isEmpty(dateFormat)) {
+						ins.append("'" + valueMeta.getString(valueData) + "'");
 					} else {
 						try {
-							java.text.SimpleDateFormat formatter = new java.text.SimpleDateFormat( dateFormat );
-							ins.append( "'" + formatter.format( date ) + "'" );
-						} catch ( Exception e ) {
-							throw new KettleValueException( "Error : ", e );
+							java.text.SimpleDateFormat formatter = new java.text.SimpleDateFormat(dateFormat);
+							ins.append("'" + formatter.format(date) + "'");
+						} catch (Exception e) {
+							throw new KettleValueException("Error : ", e);
 						}
 					}
 					break;
 				default:
-					ins.append( valueMeta.getString( valueData ) );
+					ins.append(valueMeta.getString(valueData));
 					break;
 			}
 		}
@@ -1886,28 +1820,27 @@ public abstract class BaseDatabaseInfo {
 	 * <li>Prefixes a string with underscore that begins with a number</li>
 	 * </ul>
 	 *
-	 * @param fieldname
-	 *          value to sanitize
+	 * @param fieldname value to sanitize
 	 * @return
 	 */
-	
-	public String getSafeFieldname( String fieldname ) {
-		StringBuilder newName = new StringBuilder( fieldname.length() );
+
+	public String getSafeFieldname(String fieldname) {
+		StringBuilder newName = new StringBuilder(fieldname.length());
 
 		char[] protectors = getFieldnameProtector().toCharArray();
 
 		// alpha numerics , underscores, field protectors only
-		for ( int idx = 0; idx < fieldname.length(); idx++ ) {
-			char c = fieldname.charAt( idx );
-			if ( ( c >= 'a' && c <= 'z' ) || ( c >= 'A' && c <= 'Z' ) || ( c >= '0' && c <= '9' ) || ( c == '_' ) ) {
-				newName.append( c );
-			} else if ( c == ' ' ) {
-				newName.append( '_' );
+		for (int idx = 0; idx < fieldname.length(); idx++) {
+			char c = fieldname.charAt(idx);
+			if ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z') || (c >= '0' && c <= '9') || (c == '_')) {
+				newName.append(c);
+			} else if (c == ' ') {
+				newName.append('_');
 			} else {
 				// allow protectors
-				for ( char protector : protectors ) {
-					if ( c == protector ) {
-						newName.append( c );
+				for (char protector : protectors) {
+					if (c == protector) {
+						newName.append(c);
 					}
 				}
 			}
@@ -1918,16 +1851,16 @@ public abstract class BaseDatabaseInfo {
 		fieldname = newName.toString();
 
 		// don't allow reserved words
-		for ( String reservedWord : getReservedWords() ) {
-			if ( fieldname.equalsIgnoreCase( reservedWord ) ) {
+		for (String reservedWord : getReservedWords()) {
+			if (fieldname.equalsIgnoreCase(reservedWord)) {
 				fieldname = fieldname + getFieldnameProtector();
 			}
 		}
 
-		fieldname = fieldname.replace( " ", getFieldnameProtector() );
+		fieldname = fieldname.replace(" ", getFieldnameProtector());
 
 		// can't start with a number
-		if ( fieldname.matches( "^[0-9].*" ) ) {
+		if (fieldname.matches("^[0-9].*")) {
 			fieldname = getFieldnameProtector() + fieldname;
 		}
 		return fieldname;
@@ -1936,7 +1869,7 @@ public abstract class BaseDatabaseInfo {
 	/**
 	 * @return string with the no max value sequence option.
 	 */
-	
+
 	public String getSequenceNoMaxValueOption() {
 		return "NOMAXVALUE";
 	}
@@ -1944,7 +1877,7 @@ public abstract class BaseDatabaseInfo {
 	/**
 	 * @return true if the database supports autoGeneratedKeys
 	 */
-	
+
 	public boolean supportsAutoGeneratedKeys() {
 		return true;
 	}
@@ -1953,13 +1886,13 @@ public abstract class BaseDatabaseInfo {
 	/**
 	 * Customizes the ValueMetaInterface defined in the base
 	 *
-	 * @param v the determined valueMetaInterface
-	 * @param rm the sql result
+	 * @param v     the determined valueMetaInterface
+	 * @param rm    the sql result
 	 * @param index the index to the column
 	 * @return ValueMetaInterface customized with the data base specific types
 	 */
-	
-	public ValueMetaInterface customizeValueFromSQLType( ValueMetaInterface v, java.sql.ResultSetMetaData rm, int index )
+
+	public ValueMetaInterface customizeValueFromSQLType(ValueMetaInterface v, java.sql.ResultSetMetaData rm, int index)
 			throws SQLException {
 		return null;
 	}
@@ -1969,7 +1902,7 @@ public abstract class BaseDatabaseInfo {
 	 *
 	 * @return String the create table statement
 	 */
-	
+
 	public String getCreateTableStatement() {
 		return "CREATE TABLE ";
 	}
@@ -1982,26 +1915,26 @@ public abstract class BaseDatabaseInfo {
 	 * @param tableName Name of the table to drop
 	 * @return Standard drop table statement
 	 */
-	
-	public String getDropTableIfExistsStatement( String tableName ) {
+
+	public String getDropTableIfExistsStatement(String tableName) {
 		return "DROP TABLE IF EXISTS " + tableName;
 	}
 
-	
-	public boolean fullExceptionLog( Exception e ) {
+
+	public boolean fullExceptionLog(Exception e) {
 		return true;
 	}
 
-	
+
 	public void addDefaultOptions() {
 	}
 
-	public void addAttribute( String attributeId, String value ) {
-		attributes.setProperty( attributeId, value );
+	public void addAttribute(String attributeId, String value) {
+		attributes.setProperty(attributeId, value);
 	}
 
-	public String getAttribute( String attributeId, String defaultValue ) {
-		return attributes.getProperty( attributeId, defaultValue  );
+	public String getAttribute(String attributeId, String defaultValue) {
+		return attributes.getProperty(attributeId, defaultValue);
 	}
 
 

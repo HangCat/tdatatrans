@@ -21,6 +21,7 @@
     <modules>
         <module>baseservice</module>
         <module>source-data-info</module>
+        <module>datatrans-common</module>
     </modules>
 
     <properties>
